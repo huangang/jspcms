@@ -14,7 +14,6 @@ import java.util.Map;
 /**
  * 数据库连接类
  * 说明:封装了 无参，有参，存储过程的调用
- * @author iflytek
  *
  */
 public class SqlOperate {
@@ -125,7 +124,7 @@ public class SqlOperate {
      * @param params 参数数组，若没有参数则为null
      * @return 结果集
      */
-    public ResultSet executeQueryRS(String sql, Object[] params) {
+    private ResultSet executeQueryRS(String sql, Object[] params) {
         try {
             // 获得连接
             connnection = this.getConnection();
