@@ -34,7 +34,7 @@ CREATE TABLE `posts` (
 	`title` text NOT NULL COMMENT '文章标题',
 	`content` longtext NOT NULL COMMENT '文章内容',
 	`post_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
-	`have_comment` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否评论'
+	`is_have_comment` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否评论'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- --------------------------------------------------------
