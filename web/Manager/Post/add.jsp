@@ -1,4 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.jspcms.SqlOperate" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,21 +36,44 @@
 
     </style>
 </head>
-<form action="index.jsp" method="post">
+<form action="/DoAdd"  method="post">
 <table class="table table-bordered table-hover definewidth m10">
+    <input type="hidden" name="table" value="post"/>
     <tr>
-        <td width="10%" class="tableleft">机构号</td>
-        <td><input type="text" name="grouptitle"/></td>
+        <td width="10%" class="tableleft">标题</td>
+        <td><input type="text" name="title"/></td>
     </tr>
     <tr>
-        <td class="tableleft">机构名称</td>
-        <td><input type="text" name="moduletitle"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">状态</td>
+        <td class="tableleft">分类</td>
         <td>
-            <input type="radio" name="status" value="1" checked/> 启用
-            <input type="radio" name="status" value="0"/> 禁用
+        <select name="sid">
+            <%
+                SqlOperate sqlop = new SqlOperate();
+                String sql = "select * from sorts";
+                List list = sqlop.excuteQuery(sql, null);
+                int sortNum = list.size();
+                for(int i=0;i<sortNum;i++){
+                    Object ob = list.get(i);
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    map = (HashMap)ob;
+                    String sid=map.get("sid").toString();
+                    String sname =map.get("sname").toString();
+                    out.print("<option value="+sid+">");
+                    out.print(sname);
+                    out.print("</option>");
+
+                }
+            %>
+        </select>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="tableleft">正文</td>
+        <td>
+            <textarea name="content" rows="10" cols="20">
+
+            </textarea>
         </td>
     </tr>
     <tr>

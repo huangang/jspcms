@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="../Css/style.css" />
@@ -13,8 +13,9 @@
     <script type="text/javascript" src="../Js/ckform.js"></script>
     <script type="text/javascript" src="../Js/common.js"></script>
 
- 
 
+    <%request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8"); %>
     <style type="text/css">
         body {
             padding-bottom: 40px;
@@ -36,42 +37,61 @@
     </style>
 </head>
 <body>
-<form action="{:U('User/edit')}" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="{$user.id}" />
+<form action="/DoUpdate" method="post" class="definewidth m20">
     <table class="table table-bordered table-hover definewidth m10">
+        <input type="hidden" name="table" value="user" />
+        <%
+            String uid=request.getParameter("uid");
+            String username=request.getParameter("username");
+            String password=request.getParameter("password");
+            String email=request.getParameter("email");
+            String role=request.getParameter("role");
+        %>
+        <input type="hidden" name="uid" value="<%=uid%>" />
         <tr>
-            <td width="10%" class="tableleft">登录名</td>
-            <td><input type="text" name="username" value="{$user.username}"/></td>
+            <td width="10%" class="tableleft">用户名</td>
+            <td><input type="text" name="username" value="<%=username%>"/></td>
         </tr>
         <tr>
             <td class="tableleft">密码</td>
-            <td><input type="password" name="password"/></td>
-        </tr>
-        <tr>
-            <td class="tableleft">真实姓名</td>
-            <td><input type="text" name="realname" value="{$user.realname}"/></td>
+            <td><input type="password" name="password" value="<%=password%>"/></td>
         </tr>
         <tr>
             <td class="tableleft">邮箱</td>
-            <td><input type="text" name="email" value="{$user.email}"/></td>
+            <td><input type="text" name="email" value="<%=email%>"/></td>
         </tr>
-        <tr>
-            <td class="tableleft">状态</td>
-            <td>
-                <input type="radio" name="status" value="0"
-                    <eq name="user.status" value='0'>checked</eq> /> 启用
-              <input type="radio" name="status" value="1"
-                    <eq name="user.status" value='1'>checked</eq> /> 禁用
-            </td>
-        </tr>
-        <tr>
-            <td class="tableleft">角色</td>
-            <td>{$role_checkbox}</td>
-        </tr>
+        <td class="tableleft">身份</td>
+        <td>
+            <select name="role">
+                <%
+                    if(role.equals("subscriber")){
+                %>
+                <option value="subscriber" selected="selected">subscriber</option>
+                <option value="author">author</option>
+                <option value="manager">manager</option>
+                <%
+                    }else if(role.equals("author")){
+                %>
+                <option value="subscriber">subscriber</option>
+                <option value="author" selected="selected">author</option>
+                <option value="manager">manager</option>
+                <%
+                    }else if(role.equals("manager")){
+
+                %>
+                <option value="subscriber">subscriber</option>
+                <option value="author">author</option>
+                <option value="manager" selected="selected">manager</option>
+                <%
+                    }
+                %>
+            </select>
+        </td>
         <tr>
             <td class="tableleft"></td>
             <td>
-                <button type="submit" class="btn btn-primary" type="button">保存</button>				 &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+                <button type="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
             </td>
         </tr>
     </table>

@@ -62,6 +62,7 @@
             Object ob = list.get(i);
             Map<String, Object> map = new HashMap<String, Object>();
             map = (HashMap)ob;
+            String pid =map.get("pid").toString();
             String uid=map.get("uid").toString();
             sql = "select username from users where uid="+uid;
             String username=sqlop.executeQuerySingle(sql, null).toString();
@@ -75,8 +76,8 @@
             out.print("<td>"+username+"</td>");
             out.print("<td>"+sname+"</td>");
             String post_time = map.get("post_time").toString();
-            out.print("<td>"+post_time.substring(0,post_time.length()-2) +"</td>");
-            out.print("<td>"+"<a href='edit.jsp'>编辑</a> <a href='#' onclick='del("+map.get("pid")+")'>删除</a>"+"</td>");
+            out.print("<td>" + post_time.substring(0, post_time.length() - 2) + "</td>");
+            out.print("<td>"+"<a href='edit.jsp?pid="+pid+"&sid="+sid+"'>编辑</a> <a href='#' onclick='del("+map.get("pid")+")'>删除</a>"+"</td>");
             out.print("</tr>");
         }
     %>
@@ -99,21 +100,48 @@
 
     });
 
-	function del(id)
-	{
-		
-		
-		if(confirm("确定要删除吗？"))
-		{
-		
-			var url = "index.jsp";
-			
-			window.location.href=url;		
-		
-		}
-	
-	
-	
-	
-	}
+    function del(id)
+    {
+        var xmlhttp;
+        var status="";
+        try{
+            xmlhttp=new ActiveXObject('Msxml2.XMLHTTP');
+        } catch(e){
+            try{
+                xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+            } catch(e){
+                try{
+                    xmlhttp=new XMLHttpRequest();
+                }catch(e){}
+            }
+        }
+
+
+        if(confirm("确定要删除吗？"))
+        {
+
+            xmlhttp.open("GET","/DoDelete?table=post&pid="+id,true);
+            xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4)
+                //xmlhttp.status==404 代表 没有发现该文件
+                    if (xmlhttp.status==200)
+                    {
+                        //alert(xmlhttp.status);
+                        status=xmlhttp.responseText;
+                        console.log(status);
+                    } else
+                    {
+                        alert("发生错误："+xmlhttp.status);
+                    }
+
+            }
+            xmlhttp.send(null);
+            window.location.href="index.jsp";
+
+        }
+
+
+
+
+    }
 </script>

@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.jspcms.SqlOperate" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,22 +38,60 @@
     </style>
 </head>
 <body>
-<form action="index.jsp" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="" />
+<form action="/DoUpdate"  method="post" class="definewidth m20">
+<input type="hidden" name="table" value="post" />
+    <%
+        String pid = request.getParameter("pid");
+        SqlOperate sqlop = new SqlOperate();
+        String sql = "select title from posts where pid='"+pid+"'";
+        String title= sqlop.executeQuerySingle(sql,null).toString();
+        sql = "select content from posts where pid='"+pid+"'";
+        String content = sqlop.executeQuerySingle(sql,null).toString();
+
+    %>
+    <input type="hidden" name="pid" value="<%=pid%>"/>
 <table class="table table-bordered table-hover ">
     <tr>
-        <td width="10%" class="tableleft">机构号</td>
-        <td><input type="text" name="grouptitle" value=""/></td>
+        <td width="10%" class="tableleft">标题</td>
+        <td><input type="text" name="grouptitle" value="<%=title%>"/></td>
     </tr>
     <tr>
-        <td class="tableleft">机构名称</td>
-        <td ><input type="text" name="moduletitle" value=""/></td>
-    </tr>  
+        <td class="tableleft">分类</td>
+        <td>
+            <select name="sid">
+                <%
+                    String sortid = request.getParameter("sid");
+                    sql = "select * from sorts";
+                    List list = sqlop.excuteQuery(sql, null);
+                    int sortNum = list.size();
+                    for(int i=0;i<sortNum;i++){
+                        Object ob = list.get(i);
+                        Map<String, Object> map = new HashMap<String, Object>();
+                        map = (HashMap)ob;
+                        String sid=map.get("sid").toString();
+                        String sname =map.get("sname").toString();
+                        if(sortid.equals(sid)){
+                            out.print("<option value="+sid+" selected='true'>");
+                            out.print(sname);
+                            out.print("</option>");
+                        }else{
+                            out.print("<option value="+sid+">");
+                            out.print(sname);
+                            out.print("</option>");
+                        }
+
+
+                    }
+                %>
+            </select>
+        </td>
+    </tr>
     <tr>
-        <td class="tableleft">状态</td>
-        <td >
-            <input type="radio" name="status" value="1" checked/> 启用
-           <input type="radio" name="status" value="0" /> 禁用
+        <td class="tableleft">正文</td>
+        <td>
+            <textarea name="content" rows="10" cols="20">
+                <%=content%>
+            </textarea>
         </td>
     </tr>
     <tr>

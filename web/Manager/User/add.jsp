@@ -36,10 +36,11 @@
     </style>
 </head>
 <body>
-<form action="index.jsp" method="post" class="definewidth m20">
+<form action="/DoAdd" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
+    <input type="hidden" name="table" value="user"/>
     <tr>
-        <td width="10%" class="tableleft">登录名</td>
+        <td width="10%" class="tableleft">用户名</td>
         <td><input type="text" name="username"/></td>
     </tr>
     <tr>
@@ -47,23 +48,18 @@
         <td><input type="password" name="password"/></td>
     </tr>
     <tr>
-        <td class="tableleft">真实姓名</td>
-        <td><input type="text" name="realname"/></td>
-    </tr>
-    <tr>
         <td class="tableleft">邮箱</td>
         <td><input type="text" name="email"/></td>
     </tr>
     <tr>
-        <td class="tableleft">状态</td>
+        <td class="tableleft">身份</td>
         <td>
-            <input type="radio" name="status" value="1" checked/> 启用
-           <input type="radio" name="status" value="0"/> 禁用
+            <select name="role">
+                <option value="subscriber" selected="selected">subscriber</option>
+                <option value="author">author</option>
+                <option value="manager">manager</option>
+            </select>
         </td>
-    </tr>
-    <tr>
-        <td class="tableleft">角色</td>
-        <td>{$role_checkbox}</td>
     </tr>
     <tr>
         <td class="tableleft"></td>

@@ -32,7 +32,36 @@ public class Update extends HttpServlet {
                 out.println("<script>alert('修改失败');window.location.href='Manager/Sort/index.jsp';</script>");
             }
 
+        }else if(table.equals("user")) {
+            String uid = req.getParameter("uid");
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
+            String email = req.getParameter("email");
+            String role = req.getParameter("role");
+            String sql = "update users set username='" + username + "',password='" + password + "' ,email='" + email + "' ,role='" + role + "' where uid='" + uid + "'";
+            int efn = sqlop.executeUpdate(sql, null);
+            if (efn >= 1) {
+                out.println("<script>alert('修改成功');window.location.href='Manager/User/index.jsp';</script>");
+            } else {
+                out.print(sql);
+                out.println("<script>alert('修改失败');window.location.href='Manager/User/index.jsp';</script>");
+            }
+        }else if(table.equals("post")){
+            String pid=req.getParameter("pid");
+            String title=req.getParameter("title");
+            String sid=req.getParameter("sid");
+            String content = req.getParameter("content");
+            String sql = "update posts set title='"+title+"', sid='"+sid+"',content='"+content+"' where pid='"+pid+"'";
+            int efn =sqlop.executeUpdate(sql,null);
+            if (efn >= 1) {
+                out.println("<script>alert('修改成功');window.location.href='Manager/Post/index.jsp';</script>");
+            } else {
+                out.print(sql);
+                out.println("<script>alert('修改失败');window.location.href='Manager/Post/index.jsp';</script>");
+            }
+
         }
+
 
 
     }
