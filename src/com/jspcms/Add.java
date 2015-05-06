@@ -35,10 +35,11 @@ public class Add extends HttpServlet{
         }else if (table.equals("post")){
             HttpSession session = req.getSession();
             String uid = session.getAttribute("uid").toString();
+            String role = session.getAttribute("role").toString();
             String sid = req.getParameter("sid");
             String title = req.getParameter("title");
             String content = req.getParameter("content");
-            addPost(title,uid,sid,content,resp);
+            addPost(title,uid,sid,content,resp,role);
 
         }
 
@@ -70,13 +71,17 @@ public class Add extends HttpServlet{
         }
     }
 
-    public void addPost(String title,String uid,String sid,String content,HttpServletResponse resp) throws ServletException, IOException{
+    public void addPost(String title,String uid,String sid,String content,HttpServletResponse resp,String role) throws ServletException, IOException{
         resp.setContentType("text/html;charset=utf8");
         PrintWriter out = resp.getWriter();
         String sql = "insert into posts(title,uid,sid,content) values('"+title+"','"+uid+"','"+sid+"','"+content+"')";
 
         if(sqlop.executeUpdate(sql,null) != 0){
-            out.println("<script>alert('添加成功');window.location.href='Manager/Post/index.jsp';</script>");
+            if(role.equals("manager")) {
+                out.println("<script>alert('添加成功');window.location.href='Manager/Post/index.jsp';</script>");
+            }else if(role.equals("author")){
+                out.println("<script>alert('添加成功');window.location.href='Author/Post/index.jsp';</script>");
+            }
         }else{
             out.println("添加失败");
             out.print(sql);

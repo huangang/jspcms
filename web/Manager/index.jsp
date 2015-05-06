@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if(session.getAttribute("uid")==null){
+        out.print("<script>alert(\"请登陆\");window.location.href=\"/login.jsp\";</script>");
+    }
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
