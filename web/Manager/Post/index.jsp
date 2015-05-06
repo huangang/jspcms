@@ -62,11 +62,20 @@
             Object ob = list.get(i);
             Map<String, Object> map = new HashMap<String, Object>();
             map = (HashMap)ob;
+            String uid=map.get("uid").toString();
+            sql = "select username from users where uid="+uid;
+            String username=sqlop.executeQuerySingle(sql, null).toString();
+
+            String sid=map.get("sid").toString();
+            sql = "select sname from sorts where sid="+sid;
+            String sname=sqlop.executeQuerySingle(sql, null).toString();
+
             out.print("<tr>");
             out.print("<td>"+map.get("title")+"</td>");
-            out.print("<td>"+map.get("uid")+"</td>");
-            out.print("<td>"+map.get("sid")+"</td>");
-            out.print("<td>"+map.get("post_time")+"</td>");
+            out.print("<td>"+username+"</td>");
+            out.print("<td>"+sname+"</td>");
+            String post_time = map.get("post_time").toString();
+            out.print("<td>"+post_time.substring(0,post_time.length()-2) +"</td>");
             out.print("<td>"+"<a href='edit.jsp'>编辑</a> <a href='#' onclick='del("+map.get("pid")+")'>删除</a>"+"</td>");
             out.print("</tr>");
         }
