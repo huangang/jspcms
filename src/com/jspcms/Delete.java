@@ -32,6 +32,19 @@ public class Delete extends HttpServlet {
             } finally {
                 out.close();
             }
+        }else if(table.equals("comment")){
+            String cid = req.getParameter("cid");
+            try {
+                resp.setContentType("text/html");
+                resp.setHeader("Cache-Control", "no-store");
+                resp.setHeader("Pragma", "no-cache");
+                resp.setDateHeader("Expires", 0);
+                String sql = "delete from comments where cid="+cid;
+                SqlOperate sqlop = new SqlOperate();
+                out.println(sqlop.executeUpdate(sql, null));
+            } finally {
+                out.close();
+            }
         }
 
 

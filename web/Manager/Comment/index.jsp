@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.jspcms.SqlOperate" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,58 +39,98 @@
 </head>
 <body>
 <form class="form-inline definewidth m20" action="index.jsp" method="get">
-    机构名称：
+    留言人：
     <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增机构</button>
+    <button type="submit" class="btn btn-primary">查询</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
     <tr>
-        <th>机构编号</th>
-        <th>机构名称</th>
-        <th>状态</th>
+        <th>留言编号</th>
+        <th>留言内容</th>
+        <th>留言人</th>
+        <th>留言文章</th>
+        <th>留言时间</th>
         <th>管理操作</th>
     </tr>
     </thead>
-	     <tr>
-            <td>5</td>
-            <td>管理员</td>
-            <td>1</td>
-            <td>
-                  <a href="edit.jsp">编辑</a>
-                  
-            </td>
-        </tr></table>
+    <%
+        SqlOperate sqlop = new SqlOperate();
+        String sql = "select * from comments";
+        List list = sqlop.excuteQuery(sql, null);
+        int commentNum = list.size();
+        for(int i=0;i<commentNum;i++) {
+            Object ob = list.get(i);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = (HashMap)ob;
+            String cid=map.get("cid").toString();
+            String pid=map.get("pid").toString();
+            sql = "select title from posts where pid='"+pid+"'";
+            String title = sqlop.executeQuerySingle(sql,null).toString();
+            String uid=map.get("uid").toString();
+            sql = "select username from users where uid='"+uid+"'";
+            String username = sqlop.executeQuerySingle(sql, null).toString();
+            String content=map.get("content").toString();
+            String comment_time=map.get("comment_time").toString();
+
+            out.print("<tr>");
+            out.print("<td>"+cid+"</td>");
+            out.print("<td>"+content+"</td>");
+            out.print("<td>"+username+"</td>");
+            out.print("<td>"+title+"</td>");
+            out.print("<td>"+comment_time.substring(0,comment_time.length()-2)+"</td>");
+            out.print("<td>"+"<a onclick='del("+cid+")'>删除</a></td>");
+            out.print("</tr>");
+        }
+    %>
+
+</table>
 <div class="inline pull-right page">
-         10122 条记录 1/507 页  <a href='#'>下一页</a>     <span class='current'>1</span><a href='#'>2</a><a href='/chinapost/index.php?m=Label&a=index&p=3'>3</a><a href='#'>4</a><a href='#'>5</a>  <a href='#' >下5页</a> <a href='#' >最后一页</a>    </div>
+         <%=commentNum%> 条记录
+</div>
 </body>
 </html>
 <script>
-    $(function () {
-        
-		$('#addnew').click(function(){
 
-				window.location.href="add.jsp";
-		 });
+    function del(id){
+        var xmlhttp;
+        var status="";
+        try{
+            xmlhttp=new ActiveXObject('Msxml2.XMLHTTP');
+        } catch(e){
+            try{
+                xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+            } catch(e){
+                try{
+                    xmlhttp=new XMLHttpRequest();
+                }catch(e){}
+            }
+        }
 
 
-    });
+        if(confirm("确定要删除吗？"))
+        {
 
-	function del(id)
-	{
-		
-		
-		if(confirm("确定要删除吗？"))
-		{
-		
-			var url = "index.jsp";
-			
-			window.location.href=url;		
-		
-		}
-	
-	
-	
-	
-	}
+            xmlhttp.open("GET","/DoDelete?table=comment&cid="+id,true);
+            xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4)
+                //xmlhttp.status==404 代表 没有发现该文件
+                    if (xmlhttp.status==200)
+                    {
+                        //alert(xmlhttp.status);
+                        status=xmlhttp.responseText;
+                        console.log(status);
+                    } else
+                    {
+                        alert("发生错误："+xmlhttp.status);
+                    }
+
+            }
+            xmlhttp.send(null);
+            window.location.href="index.jsp";
+
+        }
+
+    }
+
 </script>
