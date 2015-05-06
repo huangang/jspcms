@@ -23,5 +23,32 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>AddServlet</servlet-name>
+        <servlet-class>com.jspcms.Add</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServlet</servlet-name>
+        <url-pattern>/DoAdd</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>com.jspcms.Delete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/DoDelete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>com.jspcms.Update</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/DoUpdate</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

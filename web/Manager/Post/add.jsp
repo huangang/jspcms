@@ -41,7 +41,7 @@
     <tr>
         <td class="tableleft">机构名称</td>
         <td><input type="text" name="moduletitle"/></td>
-    </tr>   
+    </tr>
     <tr>
         <td class="tableleft">状态</td>
         <td>

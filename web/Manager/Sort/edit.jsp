@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.jspcms.SqlOperate" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,23 +35,20 @@
     </style>
 </head>
 <body>
-<form action="index.jsp" method="post" class="definewidth m20">
-<input type="hidden" name="id" value="" />
+<form action="/DoUpdate" method="post" class="definewidth m20">
+<input type="hidden" name="table" value="sort" />
+
 <table class="table table-bordered table-hover ">
+    <%
+        String sid=request.getParameter("sid");
+        SqlOperate sqlop = new SqlOperate();
+        String sql = "select sname from sorts where sid="+sid;
+        String sname = sqlop.executeQuerySingle(sql,null).toString();
+    %>
+    <input type="hidden" name="sid" value="<%=sid%>" />
     <tr>
-        <td width="10%" class="tableleft">机构号</td>
-        <td><input type="text" name="grouptitle" value=""/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">机构名称</td>
-        <td ><input type="text" name="moduletitle" value=""/></td>
-    </tr>  
-    <tr>
-        <td class="tableleft">状态</td>
-        <td >
-            <input type="radio" name="status" value="1" checked/> 启用
-           <input type="radio" name="status" value="0" /> 禁用
-        </td>
+        <td width="10%" class="tableleft">分类名</td>
+        <td><input type="text" name="sname" value="<%=sname%>"/></td>
     </tr>
     <tr>
         <td class="tableleft"></td>

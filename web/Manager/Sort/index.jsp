@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.jspcms.SqlOperate" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,28 +41,44 @@
 <form class="form-inline definewidth m20" action="index.jsp" method="get">
     机构名称：
     <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增机构</button>
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增分类</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
     <tr>
-        <th>机构编号</th>
-        <th>机构名称</th>
-        <th>状态</th>
+        <th>分类编号</th>
+        <th>分类名</th>
+        <th>文章数</th>
         <th>管理操作</th>
     </tr>
     </thead>
-	     <tr>
-            <td>5</td>
-            <td>管理员</td>
-            <td>1</td>
-            <td>
-                  <a href="edit.jsp">编辑</a>
-                  
-            </td>
-        </tr></table>
+    <%
+        SqlOperate sqlop = new SqlOperate();
+        String sql = "select * from sorts";
+        List list = sqlop.excuteQuery(sql, null);
+        int sortNum = list.size();
+        for(int i=0;i<sortNum;i++){
+            Object ob = list.get(i);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = (HashMap)ob;
+            String sid=map.get("sid").toString();
+            String sname =map.get("sname").toString();
+            sql= "select count(*) from posts where sid="+sid;
+            String postnum=sqlop.executeQuerySingle(sql, null).toString();
+            out.print("<tr>");
+            out.print("<td>"+sid+"</td>");
+            out.print("<td>"+sname+"</td>");
+            out.print("<td>"+postnum+"</td>");
+            out.print("<td>"+"<a href='edit.jsp?sid="+sid+"'>编辑</a> <a href='#' onclick='del("+map.get("sid")+")'>删除</a>"+"</td>");
+            out.print("</tr>");
+
+        }
+
+    %>
+</table>
 <div class="inline pull-right page">
-         10122 条记录 1/507 页  <a href='#'>下一页</a>     <span class='current'>1</span><a href='#'>2</a><a href='/chinapost/index.php?m=Label&a=index&p=3'>3</a><a href='#'>4</a><a href='#'>5</a>  <a href='#' >下5页</a> <a href='#' >最后一页</a>    </div>
+    <%=sortNum %> 条记录
+</div>
 </body>
 </html>
 <script>
@@ -74,14 +94,41 @@
 
 	function del(id)
 	{
+        var xmlhttp;
+        var status="";
+        try{
+            xmlhttp=new ActiveXObject('Msxml2.XMLHTTP');
+        } catch(e){
+            try{
+                xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+            } catch(e){
+                try{
+                    xmlhttp=new XMLHttpRequest();
+                }catch(e){}
+            }
+        }
 		
 		
 		if(confirm("确定要删除吗？"))
 		{
-		
-			var url = "index.jsp";
-			
-			window.location.href=url;		
+
+            xmlhttp.open("GET","/DoDelete?table=sort&sid="+id,true);
+            xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4)
+                //xmlhttp.status==404 代表 没有发现该文件
+                    if (xmlhttp.status==200)
+                    {
+                        //alert(xmlhttp.status);
+                        status=xmlhttp.responseText;
+                        console.log(status);
+                    } else
+                    {
+                        alert("发生错误："+xmlhttp.status);
+                    }
+
+            }
+            xmlhttp.send(null);
+            window.location.href="index.jsp";
 		
 		}
 	

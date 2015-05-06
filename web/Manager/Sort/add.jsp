@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="../Css/style.css" />
@@ -32,27 +32,21 @@
 
     </style>
 </head>
-<form action="index.jsp" method="post">
+<form action="/DoAdd" method="post">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
-        <td width="10%" class="tableleft">机构号</td>
-        <td><input type="text" name="grouptitle"/></td>
+        <td width="10%" class="tableleft">分类名</td>
+        <td><input type="text" name="sortname"/></td>
     </tr>
+
     <tr>
-        <td class="tableleft">机构名称</td>
-        <td><input type="text" name="moduletitle"/></td>
-    </tr>   
-    <tr>
-        <td class="tableleft">状态</td>
-        <td>
-            <input type="radio" name="status" value="1" checked/> 启用
-            <input type="radio" name="status" value="0"/> 禁用
-        </td>
+        <input type="hidden" value="sort" name="table"/>
     </tr>
     <tr>
         <td class="tableleft"></td>
         <td>
-            <button type="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <button type="submit" class="btn btn-primary" type="button">保存</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
         </td>
     </tr>
 </table>
@@ -64,6 +58,5 @@
 		$('#backid').click(function(){
 				window.location.href="index.jsp";
 		 });
-
     });
 </script>

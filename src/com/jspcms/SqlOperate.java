@@ -26,7 +26,7 @@ public class SqlOperate {
     /**
      * 连接字符串
      */
-    private static final String URLSTR = "jdbc:mysql://localhost:3306/jspcms";
+    private static final String URLSTR = "jdbc:mysql://localhost:3306/jspcms?useUnicode=true&characterEncoding=utf-8";
 
     /**
      * 用户名
