@@ -54,9 +54,31 @@ To change this template use File | Settings | File Templates.
     <div class="container">
         <div class="row">
             <div class="span4 logo">
+                <%
+                    if(session.getAttribute("uid") != null){
+                        String role = session.getAttribute("role").toString();
+                        if(role.equals("manager")){
+                %>
+                <a href="Manager/index.jsp">后台</a><br>
+                <%
+                        }else if(role.equals("author")){
+                %>
+                <a href="Author/index.jsp">后台</a><br>
+                <%
+                        }else if(role.equals("subscriber")){
+                %>
+                <a href="Subscriber/index.jsp">后台</a><br>
+                <%
+
+                        }
+                    }else{
+                %>
                 <a href="login.jsp">登陆</a><br>
                 <a href="register.jsp">注册</a><br>
-                <a href="#"><img src="images/logo.png" alt="logo" /></a>
+                <%
+                    }
+                %>
+                <a href="index.jsp"><img src="images/logo.png" alt="logo" /></a>
             </div>
             <div class="span8 hidden-phone">
                 <a href="#" class="alignright banner">

@@ -2,6 +2,9 @@
 *jspcms
 *内容管理系统
 */
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
 --
 -- Database: `jspcms`
 --

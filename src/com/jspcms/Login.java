@@ -28,34 +28,38 @@ public class Login extends HttpServlet{
 
 
         List list = sqlop.excuteQuery(sql, null);
-        Object ob = list.get(0);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map = (HashMap)ob;
-        user.setUid(Integer.parseInt(map.get("uid").toString()));
-        user.setUsername(map.get("username").toString());
-        user.setPassword(map.get("password").toString());
-        user.setEmail(map.get("email").toString());
-        user.setRole(map.get("role").toString());
-        user.setRegister_time(map.get("register_time").toString());
+        if(list.size()!= 0) {
+            out.print(list);
+            Object ob = list.get(0);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = (HashMap) ob;
+            user.setUid(Integer.parseInt(map.get("uid").toString()));
+            user.setUsername(map.get("username").toString());
+            user.setPassword(map.get("password").toString());
+            user.setEmail(map.get("email").toString());
+            user.setRole(map.get("role").toString());
+            user.setRegister_time(map.get("register_time").toString());
 
-        HttpSession session = req.getSession();
-        session.setAttribute("uid",user.getUid());
-        session.setAttribute("username",user.getUsername());
-        session.setAttribute("password",user.getPassword());
-        session.setAttribute("email",user.getEmail());
-        session.setAttribute("role",user.getRole());
-        session.setAttribute("register_time",user.getRegister_time());
+            HttpSession session = req.getSession();
+            session.setAttribute("uid", user.getUid());
+            session.setAttribute("username", user.getUsername());
+            session.setAttribute("password", user.getPassword());
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("role", user.getRole());
+            session.setAttribute("register_time", user.getRegister_time());
 
-        if(user.getRole().equals("manager")){
-            resp.sendRedirect("Manager/index.jsp");
-        }else if(user.getRole().equals("author")){
-            resp.sendRedirect("Author/index.jsp");
-        }else if(user.getRole().equals("subscriber")){
-            resp.sendRedirect("Subscriber/index.jsp");
-        }else {
-            out.print("系统出错");
+            if (user.getRole().equals("manager")) {
+                resp.sendRedirect("Manager/index.jsp");
+            } else if (user.getRole().equals("author")) {
+                resp.sendRedirect("Author/index.jsp");
+            } else if (user.getRole().equals("subscriber")) {
+                resp.sendRedirect("Subscriber/index.jsp");
+            } else {
+                out.print("<script>alert(\"登录错误,请重新登录\");window.location.href=\"/login.jsp\";</script>");
+            }
+        }else{
+            out.print("<script>alert(\"登录错误,请重新登录\");window.location.href=\"/login.jsp\";</script>");
         }
-
 
 
 

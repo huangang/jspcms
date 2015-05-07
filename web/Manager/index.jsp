@@ -2,6 +2,9 @@
 <%
     if(session.getAttribute("uid")==null){
         out.print("<script>alert(\"请登陆\");window.location.href=\"/login.jsp\";</script>");
+        if(!session.getAttribute("role").toString().equals("manager")){
+            out.print("<script>alert(\"您不是管理员\");window.location.href=\"/index.jsp\";</script>");
+        }
     }
 %>
 <!DOCTYPE HTML>
@@ -20,7 +23,7 @@
     <div class="dl-title">
     </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user"><%=session.getAttribute("username")%></span><a href="#" title="退出系统" class="dl-log-quit">[退出]</a>
+    <div class="dl-log"><a href="../index.jsp">返回前台</a>&nbsp;&nbsp;欢迎您，<span class="dl-log-user"><%=session.getAttribute("username")%></span><a href="../DoExit" title="退出系统" class="dl-log-quit">[退出]</a>
     </div>
 </div>
 <div class="content">
