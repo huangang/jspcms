@@ -65,8 +65,10 @@
         %>
         <a href="Subscriber/index.jsp">后台</a><br>
         <%
-
           }
+        %>
+        <a href="DoExit">退出</a><br>
+        <%
         }else{
         %>
         <a href="login.jsp">登陆</a><br>

@@ -57,7 +57,7 @@
     <%
         String uid = session.getAttribute("uid").toString();
         SqlOperate sqlop = new SqlOperate();
-        String sql = "select * from comments where uid= '"+uid+"'";
+        String sql = "select * from comments where uid= '"+uid+"' order by cid desc";
         List list = sqlop.excuteQuery(sql, null);
         int commentNum = list.size();
         for(int i=0;i<commentNum;i++) {

@@ -58,7 +58,7 @@
     </thead>
     <%
         SqlOperate sqlop = new SqlOperate();
-        String sql = "select * from users";
+        String sql = "select * from users order by uid desc";
         List list = sqlop.excuteQuery(sql, null);
         int userNum = list.size();
         for(int i=0;i<userNum;i++){
@@ -77,7 +77,7 @@
             out.print("<td>"+username+"</td>");
             out.print("<td>"+email+"</td>");
             out.print("<td>"+role+"</td>");
-            out.print("<td>" + register_time + "</td>");
+            out.print("<td>" + register_time.substring(0, register_time.length() - 2) + "</td>");
             out.print("<td>"+"<a href='edit.jsp?uid="+uid+"&username="+username+"&password="+password+"&email="+email+"&role="+role+"'>编辑</a> <a href='#' onclick='del("+uid+")'>删除</a>"+"</td>");
             out.print("</tr>");
 

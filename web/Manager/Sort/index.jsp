@@ -54,7 +54,7 @@
     </thead>
     <%
         SqlOperate sqlop = new SqlOperate();
-        String sql = "select * from sorts";
+        String sql = "select * from sorts order by sid desc";
         List list = sqlop.excuteQuery(sql, null);
         int sortNum = list.size();
         for(int i=0;i<sortNum;i++){

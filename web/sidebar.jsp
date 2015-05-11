@@ -11,8 +11,8 @@
   <!-- Search -->
   <section class="search clearfix">
     <form id="search" class="input-append" action="search.jsp" method="get"/>
-    <input class="" id="appendedInputButton" size="16" type="text" value="Search..." name="title" onfocus="if(this.value=='Search...') this.value=''" onblur="if(this.value=='') this.value='Search...'" />
-    <input class="btn search-bt" type="submit" name="submit"/>
+    <input id="appendedInputButton" size="16" type="text" value="Search..." name="title" onfocus="if(this.value=='Search...') this.value=''" onblur="if(this.value=='') this.value='Search...'" />
+    <button class="btn search-bt" type="submit" ></button>
     </form>
   </section>
 

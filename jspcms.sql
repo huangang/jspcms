@@ -81,4 +81,4 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`, `email`, `role`, `register_time`) VALUES
-	(1, 'admin', '123456', '123456@qq.com', 'manager', '2015-05-07 07:22:06');
+	(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@qq.com', 'manager', '2015-05-07 07:22:06');

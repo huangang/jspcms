@@ -56,7 +56,7 @@
     </thead>
     <%
         SqlOperate sqlop = new SqlOperate();
-        String sql = "select * from comments";
+        String sql = "select * from comments order by cid desc";
         List list = sqlop.excuteQuery(sql, null);
         int commentNum = list.size();
         for(int i=0;i<commentNum;i++) {

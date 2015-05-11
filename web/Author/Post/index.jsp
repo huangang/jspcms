@@ -56,7 +56,7 @@
     <%
         String uid = session.getAttribute("uid").toString();
         SqlOperate sqlop = new SqlOperate();
-        String sql = "select *from posts where uid='"+uid+"'";
+        String sql = "select *from posts where uid='"+uid+"' order by uid desc";
         List list = sqlop.excuteQuery(sql, null);
         int postNum = list.size();
         for(int i=0;i<postNum;i++){

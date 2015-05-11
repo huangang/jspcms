@@ -56,96 +56,79 @@ To change this template use File | Settings | File Templates.
                                 </div>
                                 <div class="wrapper">
                                     <h2 class="post-title"><a href="#"><%=sname%></a></h2>
-                                    <a href="#" class="blog-comments">3</a>
+                                    <%
+                                        sql = "select *from comments where pid='"+pid+"' order by cid desc";
+                                        List lists = sqlop.excuteQuery(sql, null);
+                                        int commentNum = lists.size();
+                                    %>
+                                    <a href="#" class="blog-comments"><%=commentNum %></a>
                                     <%=content%>
                                     <hr />
+
                                     <!--comments-->
                                     <div class="title-divider">
-                                        <h3>4 Comments</h3>
+                                        <h3><%=commentNum %> Comments</h3>
                                         <div class="divider-arrow"></div>
                                     </div>
-                                    <%--<div class="comments">--%>
-                                        <%--<ul class="comments-list">--%>
-                                            <%--<li class="clearfix comments_li">--%>
-                                                <%--<img src="images/avatar.png" alt="avatar" class="avatar" />--%>
-                                                <%--<div class="textarea">--%>
-                                                    <%--<p class="meta">May 18, 2012 Designmd says:</p>--%>
-                                                    <%--<p>--%>
-                                                        <%--Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-                                                        <%--Etiam a sapien odio, sit amet--%>
-                                                    <%--</p>--%>
-                                                <%--</div>--%>
-                                                <%--<ul>--%>
-                                                    <%--<li>--%>
-                                                        <%--<img src="images/avatar.png" alt="avatar" class="avatar" />--%>
-                                                        <%--<div class="textarea">--%>
-                                                            <%--<p class="meta">May 17, 2012 bingumd says:</p>--%>
-                                                            <%--<p>--%>
-                                                                <%--Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-                                                            <%--</p>--%>
-                                                            <%--<div class="shadow-comments2"></div>--%>
-                                                        <%--</div>--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>--%>
-                                                                <%--<img src="images/avatar.png" alt="avatar" class="avatar" />--%>
-                                                                <%--<div class="textarea">--%>
-                                                                    <%--<p class="meta">May 17, 2012 bingumd says:</p>--%>
-                                                                    <%--<p>--%>
-                                                                        <%--Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-                                                                    <%--</p>--%>
-                                                                    <%--<div class="shadow-comments2"></div>--%>
-                                                                <%--</div>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                <%--</ul>--%>
-                                            <%--</li>--%>
-                                            <%--<li>--%>
-                                                <%--<div><img src="images/avatar.png" alt="avatar" class="avatar" /></div>--%>
-                                                <%--<div class="textarea last">--%>
-                                                    <%--<p class="meta">May 16, 2012 Designmd says:</p>--%>
-                                                    <%--<p>--%>
-                                                        <%--scelerisque felis. Maecenas tincidunt ligula eu magna tincidunt eget imperdiet erat malesuada.--%>
-                                                        <%--Ut in diam et metus facilisis venenatis sit amet vel enim.--%>
-                                                    <%--</p>--%>
-                                                <%--</div>--%>
-                                            <%--</li>--%>
-                                        <%--</ul>--%>
-                                    <%--</div>--%>
+                                    <div class="comments">
+                                        <ul class="comments-list">
+                                            <%
+                                                for(int i = 0;i < commentNum; i ++) {
+                                                    Object obs = lists.get(i);
+                                                    Map<String, Object> maps = new HashMap<String, Object>();
+                                                    maps = (HashMap)obs;
+                                                    String cid = maps.get("cid").toString();
+                                                    String uerid = maps.get("uid").toString();
+                                                    sql = "select username from users where uid='"+uerid+"'";
+                                                    username=sqlop.executeQuerySingle(sql, null).toString();
+                                                    String reply_cid = "0";
+                                                    if(maps.get("reply_cid") != null){
+                                                        reply_cid = maps.get("reply_cid").toString();
+                                                    }
+                                                    String ccontent = maps.get("content").toString();
+                                                    String comment_time = maps.get("comment_time").toString();
+                                                    out.print("<li class=\"clearfix comments_li\" ><div><img src=\"images/avatar.png\" alt=\"avatar\" class=\"avatar\" /></div><div class=\"textarea last\">");
+                                                    out.print("<p class=\"meta\">"+comment_time.substring(0, comment_time.length() - 2)+" "+username+" says:</p>");
+                                                    out.print("<p>"+ccontent+"</p>");
+                                                    out.print("</div></li>");
+                                            }
+                                            %>
+
+
+                                        </ul>
+                                    </div>
                                     <hr />
+
                                     <!--commetns form-->
-                                    <%--<div class="title-divider">--%>
-                                        <%--<h3>Leave A Reply</h3>--%>
-                                        <%--<div class="divider-arrow"></div>--%>
-                                    <%--</div>--%>
-                                    <%--<form name="comment" method="post" action="" class="af-form" id="af-form" />--%>
-                                        <%--<div class="af-outer af-required">--%>
-                                            <%--<div class="af-inner">--%>
-                                                <%--<label for="name" id="name_label">Your Name:</label>--%>
-                                                <%--<input type="text" name="name" id="name" size="30" value="" class="text-input input-xlarge" />--%>
-                                                <%--<label class="error" for="name" id="name_error">Name is required.</label>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="af-outer af-required">--%>
-                                            <%--<div class="af-inner">--%>
-                                                <%--<label for="email" id="email_label">Your Email:</label>--%>
-                                                <%--<input type="text" name="email" id="email" size="30" value="" class="text-input input-xlarge" />--%>
-                                                <%--<label class="error" for="email" id="email_error">Email is required.</label>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="af-outer af-required">--%>
-                                            <%--<div class="af-inner">--%>
-                                                <%--<label for="input-message" id="message_label">Your Message:</label>--%>
-                                                <%--<textarea name="message" id="input-message" cols="30" class="text-input"></textarea>--%>
-                                                <%--<label class="error" for="input-message" id="message_error">Message is required.</label>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="af-outer af-required">--%>
-                                            <%--<div class="af-inner">--%>
-                                                <%--<input type="submit" name="submit" class="form-button btn btn-large" id="submit_btn" value="Send Message!" />--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                    <%--</form>--%>
+                                    <div class="title-divider">
+                                        <h3>Leave A Reply</h3>
+                                        <div class="divider-arrow"></div>
+                                    </div>
+                                    <form name="comment" method="post" action="/DoAdd" class="af-form" id="af-form" />
+                                    <input type="hidden" name="table" value="comment"/>
+                                    <input type="hidden" name="pid" value="<%=pid%>"/>
+                                        <div class="af-outer af-required">
+                                            <div class="af-inner">
+                                                <label for="input-message" id="message_label">Your Message:</label>
+                                                <textarea name="message" id="input-message" cols="30" class="text-input"></textarea>
+                                                <label class="error" for="input-message" id="message_error">Message is required.</label>
+                                            </div>
+                                        </div>
+                                        <div class="af-outer af-required">
+                                            <div class="af-inner">
+                                                <%
+
+                                                if(session.getAttribute("uid") != null){
+                                                    out.print("<input type=\"submit\" name=\"submit\" class=\"form-button btn btn-large\" id=\"submit_btn\" value=\"Send Message!\" />");
+                                                }else{
+                                                    out.print("<input type=\"submit\" name=\"submit\" class=\"form-button btn btn-large\" id=\"submit_btn\" value=\"Send Message!\" disabled=\"disabled\" />");
+                                                    out.print("<label class=\"error\" for=\"input-message\" id=\"message_error\">Please login.</label>");
+                                                }
+                                                %>
+
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

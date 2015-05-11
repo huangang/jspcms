@@ -55,7 +55,7 @@
     </thead>
     <%
         SqlOperate sqlop = new SqlOperate();
-        String sql = "select *from posts";
+        String sql = "select *from posts order by pid desc";
         List list = sqlop.excuteQuery(sql, null);
         int postNum = list.size();
         for(int i=0;i<postNum;i++){
