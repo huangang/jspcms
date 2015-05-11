@@ -10,9 +10,9 @@
 <aside id="sidebar" class="alignright span4">
   <!-- Search -->
   <section class="search clearfix">
-    <form id="search" class="input-append" />
-    <input class="" id="appendedInputButton" size="16" type="text" value="Search..." name="search site" onfocus="if(this.value=='Search...') this.value=''" onblur="if(this.value=='') this.value='Search...'" />
-    <input class="btn search-bt" type="submit" name="submit" value="" />
+    <form id="search" class="input-append" action="search.jsp" method="get"/>
+    <input class="" id="appendedInputButton" size="16" type="text" value="Search..." name="title" onfocus="if(this.value=='Search...') this.value=''" onblur="if(this.value=='') this.value='Search...'" />
+    <input class="btn search-bt" type="submit" name="submit"/>
     </form>
   </section>
 
