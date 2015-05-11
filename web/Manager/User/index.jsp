@@ -128,6 +128,10 @@
                         //alert(xmlhttp.status);
                         status=xmlhttp.responseText;
                         console.log(status);
+                        if(status === "无法删除"){
+                            alert("请先删除改用户的所有文章");
+                        }
+                        window.location.href="index.jsp";
                     } else
                     {
                         alert("发生错误："+xmlhttp.status);
@@ -135,7 +139,7 @@
 
             }
             xmlhttp.send(null);
-            window.location.href="index.jsp";
+            //window.location.href="index.jsp";
 
         }
 

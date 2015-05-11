@@ -52,9 +52,15 @@ public class Delete extends HttpServlet {
                 resp.setHeader("Cache-Control", "no-store");
                 resp.setHeader("Pragma", "no-cache");
                 resp.setDateHeader("Expires", 0);
-                String sql = "delete from users where uid="+uid;
                 SqlOperate sqlop = new SqlOperate();
-                out.println(sqlop.executeUpdate(sql, null));
+                String sql = "select count(*) from posts where uid='"+uid+"'";
+                String pnum = sqlop.executeQuerySingle(sql,null).toString();
+                if(Integer.parseInt(pnum)==0) {
+                    sql = "delete from users where uid=" + uid;
+                    out.println(sqlop.executeUpdate(sql, null));
+                }else{
+                    out.print("无法删除");
+                }
             } finally {
                 out.close();
             }
