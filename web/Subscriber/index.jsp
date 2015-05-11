@@ -13,9 +13,9 @@ if(session.getAttribute("uid")==null){
 <head>
     <title>订阅者</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <link href="../CommonBackstage/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="../CommonBackstage/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="../CommonBackstage/assets/css/main-min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -39,10 +39,10 @@ if(session.getAttribute("uid")==null){
 
     </ul>
 </div>
-<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="assets/js/bui-min.js"></script>
-<script type="text/javascript" src="assets/js/common/main-min.js"></script>
-<script type="text/javascript" src="assets/js/config-min.js"></script>
+<script type="text/javascript" src="../CommonBackstage/assets/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="../CommonBackstage/assets/js/bui-min.js"></script>
+<script type="text/javascript" src="../CommonBackstage/assets/js/common/main-min.js"></script>
+<script type="text/javascript" src="../CommonBackstage/assets/js/config-min.js"></script>
 <script>
     BUI.use('common/main',function(){
         var config = [

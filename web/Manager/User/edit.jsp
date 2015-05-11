@@ -4,14 +4,14 @@
 <head>
     <title></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
-    <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="../Js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Js/ckform.js"></script>
-    <script type="text/javascript" src="../Js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../CommonBackstage/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../../CommonBackstage/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../../CommonBackstage/Css/style.css" />
+    <script type="text/javascript" src="../../CommonBackstage/Js/jquery.js"></script>
+    <script type="text/javascript" src="../../CommonBackstage/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="../../CommonBackstage/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../CommonBackstage/Js/ckform.js"></script>
+    <script type="text/javascript" src="../../CommonBackstage/Js/common.js"></script>
 
 
     <%request.setCharacterEncoding("UTF-8");

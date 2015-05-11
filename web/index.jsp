@@ -10,85 +10,12 @@ To change this template use File | Settings | File Templates.
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
-<!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-
-<head>
-    
-    <meta name="viewport" content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" />
-    <link rel="icon" href="images/favicon.png" type="image/png" />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-    <title>首页</title>
-    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link href="css/prettyPhoto.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="js/js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="js/js/jquery.quicksand.js"></script>
-    <script type="text/javascript" src="js/js/superfish.js"></script>
-    <script type="text/javascript" src="js/js/hoverIntent.js"></script>
-    <script type="text/javascript" src="js/js/jquery.hoverdir.js"></script>
-    <script type="text/javascript" src="js/js/jquery.flexslider.js"></script>
-    <script type="text/javascript" src="js/js/jflickrfeed.min.js"></script>
-    <script type="text/javascript" src="js/js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="js/js/jquery.elastislide.js"></script>
-    <script type="text/javascript" src="js/js/smoothscroll.js"></script>
-    <script type="text/javascript" src="js/js/jquery.ui.totop.js"></script>
-    <script type="text/javascript" src="js/js/main.js"></script>
-    <script type="text/javascript" src="js/js/accordion.settings.js"></script>
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="js/js/html5.js"></script>
-    <link href="css/ie.css" type="text/css" rel="stylesheet"/>
-    <![endif]-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
-<body>
 
 
-<!-- header -->
-<header id="header">
-    <div class="container">
-        <div class="row">
-            <div class="span4 logo">
-                <%
-                    if(session.getAttribute("uid") != null){
-                        String role = session.getAttribute("role").toString();
-                        if(role.equals("manager")){
-                %>
-                <a href="Manager/index.jsp">后台</a><br>
-                <%
-                        }else if(role.equals("author")){
-                %>
-                <a href="Author/index.jsp">后台</a><br>
-                <%
-                        }else if(role.equals("subscriber")){
-                %>
-                <a href="Subscriber/index.jsp">后台</a><br>
-                <%
+<jsp:include page="header.jsp" flush="true" />
 
-                        }
-                    }else{
-                %>
-                <a href="login.jsp">登陆</a><br>
-                <a href="register.jsp">注册</a><br>
-                <%
-                    }
-                %>
-                <a href="index.jsp"><img src="images/logo.png" alt="logo" /></a>
-            </div>
-            <div class="span8 hidden-phone">
-                <a href="#" class="alignright banner">
-                    <img src="images/banner-468-60.gif" alt="" />
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
 
+<title>首页</title>
 <!-- container -->
 <section id="container">
     <div class="container">
@@ -176,70 +103,12 @@ To change this template use File | Settings | File Templates.
                     %>
                 </div>
             </section>
-            <!-- sidebar -->
-            <aside id="sidebar" class="alignright span4">
-                <!-- Search -->
-                <section class="search clearfix">
-                    <form id="search" class="input-append" />
-                        <input class="" id="appendedInputButton" size="16" type="text" value="Search..." name="search site" onfocus="if(this.value=='Search...') this.value=''" onblur="if(this.value=='') this.value='Search...'" />
-                        <input class="btn search-bt" type="submit" name="submit" value="" />
-                    </form>
-                </section>
-        
-
-
-                <!-- Advertisment -->
-                <div class="title-divider">
-                    <h3>Advertisment</h3>
-                    <div class="divider-arrow"></div>
-                </div>
-                <section class="block-dark">
-                    <img src="images/adv.gif" alt="" />
-                </section>
-                <!-- Recent Posts -->
-                <div class="title-divider">
-                    <h3>Recent Posts</h3>
-                    <div class="divider-arrow"></div>
-                </div>
-                <section class="post-widget block-grey">
-                    <ul class="clearfix block-light wrap15">
-                        <li>
-                            <a href="#"><img src="example/sidebar1.jpg" alt="photo" /></a>
-                            <a href="#">Ut in lacus rhoncus elit egesta sluctus. Nullam at</a>
-                            <p><em>12 Apr 2012, 3 comments</em></p>
-                            <div class="clear"></div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="example/sidebar2.jpg" alt="photo" /></a>
-                            <a href="#">Ut in lacus rhoncus elit egesta sluctus. Nullam at</a>
-                            <p><em>12 Apr 2012, 3 comments</em></p>
-                            <div class="clear"></div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="example/sidebar3.jpg" alt="photo" /></a>
-                            <a href="#">Ut in lacus rhoncus elit egesta sluctus. Nullam at</a>
-                            <p><em>12 Apr 2012, 3 comments</em></p>
-                            <div class="clear"></div>
-                        </li>
-                    </ul>
-                </section>
-            </aside>
+            <jsp:include page="sidebar.jsp" flush="true"/>
 
 
         </div>
     </div>
 </section>
 
+<jsp:include page="footer.jsp" flush="true" />
 
-<!--footer menu-->
-<section id="footer-menu">
-    <div class="container">
-        <div class="row">
-            <p class="span12"><span>&copy; Copyright 2015, <span class="color2">JSP CMS</span> | All Rights Reserved</span></p>
-        </div>
-    </div>
-</section>
-
-
-</body>
-</html>
