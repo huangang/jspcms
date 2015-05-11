@@ -72,7 +72,7 @@
     <h2 class="form-signin-heading">请登陆</h2>
     <div class="input-group">
         <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-        <input type="text" class="form-control" placeholder="用户名/邮箱" required autofocus name="username">
+        <input type="text" class="form-control" placeholder="邮箱" required autofocus name="email">
     </div>
 
     <div class="input-group">

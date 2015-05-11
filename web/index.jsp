@@ -74,7 +74,7 @@ To change this template use File | Settings | File Templates.
 
                     <%
                         SqlOperate sqlop = new SqlOperate();
-                        String sql = "select *from posts";
+                        String sql = "select *from posts order by pid desc";
                         List list = sqlop.excuteQuery(sql, null);
                         int postNum = list.size();
                         for(int i=0;i<postNum;i++) {
@@ -82,6 +82,8 @@ To change this template use File | Settings | File Templates.
                             Map<String, Object> map = new HashMap<String, Object>();
                             map = (HashMap)ob;
                             String pid =map.get("pid").toString();
+                            sql = "select count(*) from comments where pid = '"+pid+"'";
+                            String cnum = sqlop.executeQuerySingle(sql,null).toString();
                             String uid=map.get("uid").toString();
                             String title = map.get("title").toString();
                             String content = map.get("content").toString();
@@ -94,7 +96,7 @@ To change this template use File | Settings | File Templates.
                             out.print("<article class=\"blog-post span8\"><div class=\"block-grey\"><div class=\"block-light\"><div class=\"wrapper\">");
                             out.print("<h2 class=\"post-title\"><a href=\"single.jsp?pid="+pid+"\">");
                             out.print(title+"</a></h2>");
-                            out.print("<a href=\"#\" class=\"blog-comments\">0</a>");
+                            out.print("<a href=\"#\" class=\"blog-comments\">"+cnum+"</a>");
                             out.print("<blockquote><p>"+content+"</p></blockquote>");
                             out.print("<p class=\"tags\">Sort: <a href=\"#\">"+sname+"</a></p>");
                             out.print("</div></div></div></article>");

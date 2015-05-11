@@ -41,9 +41,16 @@ public class Add extends HttpServlet{
             String content = req.getParameter("content");
             addPost(title,uid,sid,content,resp,role);
 
+        }else if(table.equals("comment")){
+            HttpSession session = req.getSession();
+            String uid = session.getAttribute("uid").toString();
+            String pid = req.getParameter("pid");
+            String content = req.getParameter("message");
+            addComment(uid, pid, content, resp);
         }
 
     }
+
 
     public void addSort(String sortname,HttpServletResponse resp) throws ServletException, IOException{
         resp.setContentType("text/html;charset=utf8");
@@ -87,4 +94,20 @@ public class Add extends HttpServlet{
             out.print(sql);
         }
     }
+
+    private void addComment(String uid, String pid, String content, HttpServletResponse resp) throws ServletException, IOException{
+        resp.setContentType("text/html;charset=utf8");
+        PrintWriter out = resp.getWriter();
+        String sql = "insert into comments(pid,uid,content) values('"+pid+"','"+uid+"','"+content+"')";
+
+        if(sqlop.executeUpdate(sql,null) != 0){
+            out.println("<script>alert('添加成功');window.location.href='single.jsp?pid="+pid+"';</script>");
+        }else{
+            out.println("<script>alert('添加失败');window.location.href='single.jsp?pid="+pid+"';</script>");
+            out.println("<script>alert('" + sql + "');");
+        }
+
+    }
+
+
 }

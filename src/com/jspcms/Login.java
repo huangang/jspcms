@@ -18,12 +18,14 @@ public class Login extends HttpServlet{
     User user = new User();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doPost(req, resp);
-        String username = req.getParameter("username");
+        req.setCharacterEncoding("UTF-8");
+        String email = req.getParameter("email");
         String password =req.getParameter("password");
+        MD5 getMD5 = new MD5();
+        password = getMD5.GetMD5Code(password);
         resp.setContentType("text/html;charset=utf8");
         PrintWriter out = resp.getWriter();
-        String sql ="select *from users where username='"+username+"' and password='"+password+"'";
+        String sql ="select *from users where email='"+email+"' and password='"+password+"'";
         SqlOperate sqlop = new SqlOperate();
 
 
