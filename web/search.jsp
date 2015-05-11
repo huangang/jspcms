@@ -73,12 +73,12 @@
           <%--</article>--%>
 
           <%
-            String ptitle=request.getParameter("title");
+            String ptitle=new String(request.getParameter("title").getBytes("iso-8859-1"),"utf-8");
             if(ptitle == null){
               response.sendRedirect("index.jsp");
             }
             SqlOperate sqlop = new SqlOperate();
-            String sql = "select *from posts where title like '%"+ptitle+"%'";
+            String sql = "SELECT * FROM posts WHERE title LIKE '%"+ptitle+"%'";
             List list = sqlop.excuteQuery(sql, null);
             int postNum = list.size();
             for(int i=0;i<postNum;i++) {
