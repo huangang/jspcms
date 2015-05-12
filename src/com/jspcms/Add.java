@@ -68,6 +68,8 @@ public class Add extends HttpServlet{
     public void addUser(String username,String password,String email,String role,HttpServletResponse resp) throws ServletException, IOException{
         resp.setContentType("text/html;charset=utf8");
         PrintWriter out = resp.getWriter();
+        MD5 getMD5 = new MD5();
+        password = getMD5.GetMD5Code( password );
         String sql = "insert into users(username,password,email,role) values('"+username+"','"+password+"','"+email+"','"+role+"')";
 
         if(sqlop.executeUpdate(sql,null) != 0){
