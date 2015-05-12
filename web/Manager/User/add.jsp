@@ -49,7 +49,7 @@
     </tr>
     <tr>
         <td class="tableleft">邮箱</td>
-        <td><input type="text" name="email"/></td>
+        <td><input type="email" name="email"/></td>
     </tr>
     <tr>
         <td class="tableleft">身份</td>

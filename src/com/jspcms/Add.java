@@ -68,15 +68,22 @@ public class Add extends HttpServlet{
     public void addUser(String username,String password,String email,String role,HttpServletResponse resp) throws ServletException, IOException{
         resp.setContentType("text/html;charset=utf8");
         PrintWriter out = resp.getWriter();
-        MD5 getMD5 = new MD5();
-        password = getMD5.GetMD5Code( password );
-        String sql = "insert into users(username,password,email,role) values('"+username+"','"+password+"','"+email+"','"+role+"')";
 
-        if(sqlop.executeUpdate(sql,null) != 0){
-            out.println("<script>alert('添加成功');window.location.href='Manager/User/index.jsp';</script>");
-        }else{
-            out.println("添加失败");
-            out.print(sql);
+        String sqlEmail = "select *from users where email='"+email+"'";
+
+        if(sqlop.executeQuerySingle(sqlEmail,null) != null){
+            out.print("<script>alert(\"邮箱已存在\");window.location.href=\"/Manager/User/add.jsp\";</script>");
+        }else {
+            MD5 getMD5 = new MD5();
+            password = getMD5.GetMD5Code( password );
+            String sql = "insert into users(username,password,email,role) values('" + username + "','" + password + "','" + email + "','" + role + "')";
+
+            if (sqlop.executeUpdate(sql, null) != 0) {
+                out.println("<script>alert('添加成功');window.location.href='Manager/User/index.jsp';</script>");
+            } else {
+                out.println("添加失败");
+                out.print(sql);
+            }
         }
     }
 

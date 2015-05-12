@@ -72,13 +72,19 @@
     <h2 class="form-signin-heading">请登陆</h2>
     <div class="input-group">
         <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-        <input type="text" class="form-control" placeholder="邮箱" required autofocus name="email">
+        <input type="email" class="form-control" placeholder="邮箱" required autofocus name="email">
     </div>
 
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></div>
         <input type="password" class="form-control" placeholder="密码" required name="password">
     </div>
+
+    <div class="input-group">
+      <div class="input-group-addon"><img src="captcha.jsp" onclick="javascript:this.src = 'captcha.jsp?time=' + Math.random();"></div>
+      <input type="text" class="form-control" placeholder="验证码" required name="code">
+    </div>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
   </form>
 
