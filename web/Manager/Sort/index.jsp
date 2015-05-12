@@ -109,7 +109,7 @@
         }
 		
 		
-		if(confirm("确定要删除吗？"))
+		if(confirm("确定要删除吗？该分类下所有文章都会删除"))
 		{
 
             xmlhttp.open("GET","/DoDelete?table=sort&sid="+id,true);

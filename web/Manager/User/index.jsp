@@ -116,30 +116,22 @@
         }
 
 
-        if(confirm("确定要删除吗？"))
+        if(confirm("确定要删除吗？该用户的所有文章及内容都会删除"))
         {
 
             xmlhttp.open("GET","/DoDelete?table=user&uid="+id,true);
             xmlhttp.onreadystatechange=function(){
                 if (xmlhttp.readyState==4)
                 //xmlhttp.status==404 代表 没有发现该文件
-                    if (xmlhttp.status==200)
-                    {
+                    if (xmlhttp.status==200) {
                         //alert(xmlhttp.status);
-                        status=xmlhttp.responseText;
+                        status = xmlhttp.responseText;
                         console.log(status);
-                        if(status === "无法删除"){
-                            alert("请先删除改用户的所有文章");
-                        }
-                        window.location.href="index.jsp";
-                    } else
-                    {
-                        alert("发生错误："+xmlhttp.status);
                     }
 
             }
             xmlhttp.send(null);
-            //window.location.href="index.jsp";
+            window.location.href="index.jsp";
 
         }
 

@@ -29,6 +29,8 @@ public class Delete extends HttpServlet {
                 String sql = "delete from sorts where sid="+sid;
                 SqlOperate sqlop = new SqlOperate();
                 out.println(sqlop.executeUpdate(sql, null));
+                sql = "delete from posts where sid='"+sid+"'";
+                sqlop.executeUpdate(sql,null);
             } finally {
                 out.close();
             }
@@ -53,14 +55,12 @@ public class Delete extends HttpServlet {
                 resp.setHeader("Pragma", "no-cache");
                 resp.setDateHeader("Expires", 0);
                 SqlOperate sqlop = new SqlOperate();
-                String sql = "select count(*) from posts where uid='"+uid+"'";
-                String pnum = sqlop.executeQuerySingle(sql,null).toString();
-                if(Integer.parseInt(pnum)==0) {
-                    sql = "delete from users where uid=" + uid;
-                    out.println(sqlop.executeUpdate(sql, null));
-                }else{
-                    out.print("无法删除");
-                }
+                String sql = "delete from users where uid=" + uid;
+                out.println(sqlop.executeUpdate(sql, null));
+                sql = "delete from posts where uid='"+uid+"'";
+                sqlop.excuteQuery(sql,null);
+                sql = "delete from comments where uid='"+uid+"'";
+                sqlop.executeUpdate(sql,null);
             } finally {
                 out.close();
             }
@@ -74,6 +74,8 @@ public class Delete extends HttpServlet {
                 String sql = "delete from posts where pid="+pid;
                 SqlOperate sqlop = new SqlOperate();
                 out.println(sqlop.executeUpdate(sql, null));
+                sql = "delete from comments where pid='"+pid+"'";
+                sqlop.executeUpdate(sql,null);
             } finally {
                 out.close();
             }
