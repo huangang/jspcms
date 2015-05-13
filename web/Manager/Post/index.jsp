@@ -64,11 +64,11 @@
             map = (HashMap)ob;
             String pid =map.get("pid").toString();
             String uid=map.get("uid").toString();
-            sql = "select username from users where uid="+uid;
+            sql = "select username from users where uid='"+uid+"'";
             String username=sqlop.executeQuerySingle(sql, null).toString();
 
             String sid=map.get("sid").toString();
-            sql = "select sname from sorts where sid="+sid;
+            sql = "select sname from sorts where sid='"+sid+"'";
             String sname=sqlop.executeQuerySingle(sql, null).toString();
 
             out.print("<tr>");

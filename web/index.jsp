@@ -87,11 +87,11 @@ To change this template use File | Settings | File Templates.
                             String uid=map.get("uid").toString();
                             String title = map.get("title").toString();
                             String content = map.get("content").toString();
-                            sql = "select username from users where uid="+uid;
+                            sql = "select username from users where uid='"+uid+"'";
                             String username=sqlop.executeQuerySingle(sql, null).toString();
 
                             String sid=map.get("sid").toString();
-                            sql = "select sname from sorts where sid="+sid;
+                            sql = "select sname from sorts where sid='"+sid+"'";
                             String sname=sqlop.executeQuerySingle(sql, null).toString();
                             out.print("<article class=\"blog-post span8\"><div class=\"block-grey\"><div class=\"block-light\"><div class=\"wrapper\">");
                             out.print("<h2 class=\"post-title\"><a href=\"single.jsp?pid="+pid+"\">");

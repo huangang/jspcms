@@ -30,47 +30,6 @@
               <div class="divider-arrow"></div>
             </div>
           </div>
-          <%--<article class="blog-post span8">--%>
-          <%--<div class="block-grey">--%>
-          <%--<div class="block-light">--%>
-          <%--<div class="wrapper-img">--%>
-          <%--<a href="#"><img src="example/blog1.jpg" alt="photo" /></a>--%>
-          <%--</div>--%>
-          <%--<div class="wrapper">--%>
-          <%--<h2 class="post-title"><a href="#">Lorem ipsum</a></h2>--%>
-          <%--<a href="#" class="blog-comments">3</a>--%>
-          <%--<p>--%>
-          <%--Lorem ipsum dolor sit amet, consectetuer adipiscing elit,--%>
-          <%--sed diam nonummy nibh euismod tdolore mag quam erat volutpat.--%>
-          <%--<a href="#" class="read-more">[...]</a>--%>
-          <%--</p>--%>
-          <%--<p class="tags">--%>
-          <%--Tags: <a href="#">Science</a>, <a href="#">Technology</a>, <a href="#">News</a>--%>
-          <%--</p>--%>
-          <%--</div>--%>
-          <%--</div>--%>
-          <%--</div>--%>
-          <%--</article>--%>
-          <%--<article class="blog-post span8">--%>
-          <%--<div class="block-grey">--%>
-          <%--<div class="block-light">--%>
-          <%--<div class="wrapper">--%>
-          <%--<h2 class="post-title"><a href="#">Lorem ipsum</a></h2>--%>
-          <%--<a href="#" class="blog-comments">3</a>--%>
-          <%--<blockquote>--%>
-          <%--<p>--%>
-          <%--Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-          <%--Morbi posuere metus ut sem pellentesque nec ullamcorper leo sollicitudin.--%>
-          <%--Sed adipiscing placerat eros id tincidunt. Donec eu luctus tortor.--%>
-          <%--</p>--%>
-          <%--</blockquote>--%>
-          <%--<p class="tags">--%>
-          <%--Tags: <a href="#">Science</a>, <a href="#">Technology</a>, <a href="#">News</a>--%>
-          <%--</p>--%>
-          <%--</div>--%>
-          <%--</div>--%>
-          <%--</div>--%>
-          <%--</article>--%>
 
           <%
             String ptitle=new String(request.getParameter("title").getBytes("iso-8859-1"),"utf-8");
@@ -89,11 +48,11 @@
               String uid=map.get("uid").toString();
               String title = map.get("title").toString();
               String content = map.get("content").toString();
-              sql = "select username from users where uid="+uid;
+              sql = "select username from users where uid='"+uid+"'";
               String username=sqlop.executeQuerySingle(sql, null).toString();
 
               String sid=map.get("sid").toString();
-              sql = "select sname from sorts where sid="+sid;
+              sql = "select sname from sorts where sid='"+sid+"'";
               String sname=sqlop.executeQuerySingle(sql, null).toString();
               out.print("<article class=\"blog-post span8\"><div class=\"block-grey\"><div class=\"block-light\"><div class=\"wrapper\">");
               out.print("<h2 class=\"post-title\"><a href=\"single.jsp?pid="+pid+"\">");

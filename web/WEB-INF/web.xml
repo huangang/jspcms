@@ -67,5 +67,14 @@
         <url-pattern>/DoExit</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.jspcms.Search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/DoSearch</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
