@@ -10,11 +10,7 @@ To change this template use File | Settings | File Templates.
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
-
-
 <jsp:include page="header.jsp" flush="true" />
-
-
 <title>首页</title>
 <!-- container -->
 <section id="container">

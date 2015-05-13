@@ -41,10 +41,7 @@
   <link href="css/ie.css" type="text/css" rel="stylesheet"/>
   <![endif]-->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
 <body>
-
-
 <!-- header -->
 <header id="header">
   <div class="container">
