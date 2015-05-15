@@ -54,11 +54,38 @@
     </tr>
     </thead>
     <%
+
+        //一页放10个
+        int PAGESIZE = 10;
+        int pageCount;
+        int curPage = 1;
+
         SqlOperate sqlop = new SqlOperate();
         String sql = "select *from posts order by pid desc";
         List list = sqlop.excuteQuery(sql, null);
         int postNum = list.size();
-        for(int i=0;i<postNum;i++){
+
+        pageCount = (postNum%PAGESIZE==0)?(postNum/PAGESIZE):(postNum/PAGESIZE+1);
+        String tmp = request.getParameter("curPage");
+        if(tmp==null){
+            tmp="1";
+        }
+        curPage = Integer.parseInt(tmp);
+        if(curPage>=pageCount) curPage = pageCount;
+
+        int pageI = 0;
+        int curPageI = 0;
+        if(postNum > PAGESIZE){
+            pageI = (curPage-1) * PAGESIZE;
+            curPageI = curPage * PAGESIZE;
+        }else{
+            pageI = 0;
+            curPageI = postNum;
+        }
+        if(curPageI > postNum ){
+            curPageI = postNum;
+        }
+        for(int i=pageI;i<curPageI;i++) {
             Object ob = list.get(i);
             Map<String, Object> map = new HashMap<String, Object>();
             map = (HashMap)ob;
@@ -83,9 +110,27 @@
     %>
 </table>
 <div class="inline pull-right page">
-         <%=postNum%> 条记录
-    <%--1/507 页  <a href='#'>下一页</a>--%>
-    <%--<span class='current'>1</span><a href='#'>2</a><a href='#'>3</a><a href='#'>4</a><a href='#'>5</a>  <a href='#' >下5页</a> <a href='#' >最后一页</a>--%>
+    <%=postNum%> 条记录
+    <a href = "index.jsp?curPage=1" >首页</a>
+    <%
+        if(curPage==1){
+    %>
+    <%
+    }else{
+    %>
+    <a href = "index.jsp?curPage=<%=curPage-1%>" >上一页</a>
+    <%
+        }
+        if(curPage == pageCount){
+
+        }else{
+    %>
+    <a href = "index.jsp?curPage=<%=curPage+1%>" >下一页</a>
+    <%
+        }
+    %>
+    <a href = "index.jsp?curPage=<%=pageCount%>" >尾页</a>
+    第<%=curPage%>页/共<%=pageCount%>页
 </div>
 </body>
 </html>

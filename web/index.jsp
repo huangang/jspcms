@@ -73,10 +73,12 @@ To change this template use File | Settings | File Templates.
                         int PAGESIZE = 10;
                         int pageCount;
                         int curPage = 1;
+
                         SqlOperate sqlop = new SqlOperate();
                         String sql = "select *from posts order by pid desc";
                         List list = sqlop.excuteQuery(sql, null);
                         int postNum = list.size();
+
                         pageCount = (postNum%PAGESIZE==0)?(postNum/PAGESIZE):(postNum/PAGESIZE+1);
                         String tmp = request.getParameter("curPage");
                         if(tmp==null){
@@ -85,8 +87,19 @@ To change this template use File | Settings | File Templates.
                         curPage = Integer.parseInt(tmp);
                         if(curPage>=pageCount) curPage = pageCount;
 
-
-                        for(int i=((curPage-1) * PAGESIZE);i<curPage * PAGESIZE;i++) {
+                        int pageI = 0;
+                        int curPageI = 0;
+                        if(postNum > PAGESIZE){
+                            pageI = (curPage-1) * PAGESIZE;
+                            curPageI = curPage * PAGESIZE;
+                        }else{
+                            pageI = 0;
+                            curPageI = postNum;
+                        }
+                        if(curPageI > postNum ){
+                            curPageI = postNum;
+                        }
+                        for(int i=pageI;i<curPageI;i++) {
                             Object ob = list.get(i);
                             Map<String, Object> map = new HashMap<String, Object>();
                             map = (HashMap)ob;

@@ -55,11 +55,37 @@
     </tr>
     </thead>
     <%
+        //一页放10个
+        int PAGESIZE = 10;
+        int pageCount;
+        int curPage = 1;
+
         SqlOperate sqlop = new SqlOperate();
         String sql = "select * from comments order by cid desc";
         List list = sqlop.excuteQuery(sql, null);
         int commentNum = list.size();
-        for(int i=0;i<commentNum;i++) {
+
+        pageCount = (commentNum%PAGESIZE==0)?(commentNum/PAGESIZE):(commentNum/PAGESIZE+1);
+        String tmp = request.getParameter("curPage");
+        if(tmp==null){
+            tmp="1";
+        }
+        curPage = Integer.parseInt(tmp);
+        if(curPage>=pageCount) curPage = pageCount;
+
+        int pageI = 0;
+        int curPageI = 0;
+        if(commentNum > PAGESIZE){
+            pageI = (curPage-1) * PAGESIZE;
+            curPageI = curPage * PAGESIZE;
+        }else{
+            pageI = 0;
+            curPageI = commentNum;
+        }
+        if(curPageI > commentNum ){
+            curPageI = commentNum;
+        }
+        for(int i=pageI;i<curPageI;i++) {
             Object ob = list.get(i);
             Map<String, Object> map = new HashMap<String, Object>();
             map = (HashMap)ob;
@@ -86,7 +112,27 @@
 
 </table>
 <div class="inline pull-right page">
-         <%=commentNum%> 条记录
+    <%=commentNum%> 条记录
+    <a href = "index.jsp?curPage=1" >首页</a>
+    <%
+        if(curPage==1){
+    %>
+    <%
+    }else{
+    %>
+    <a href = "index.jsp?curPage=<%=curPage-1%>" >上一页</a>
+    <%
+        }
+        if(curPage == pageCount){
+
+        }else{
+    %>
+    <a href = "index.jsp?curPage=<%=curPage+1%>" >下一页</a>
+    <%
+        }
+    %>
+    <a href = "index.jsp?curPage=<%=pageCount%>" >尾页</a>
+    第<%=curPage%>页/共<%=pageCount%>页
 </div>
 </body>
 </html>
