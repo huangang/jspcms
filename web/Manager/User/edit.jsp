@@ -52,10 +52,10 @@
             <td width="10%" class="tableleft">用户名</td>
             <td><input type="text" name="username" value="<%=username%>"/></td>
         </tr>
-        <tr>
-            <td class="tableleft">密码</td>
-            <td><input type="password" name="password" value="<%=password%>"/></td>
-        </tr>
+        <%--<tr>--%>
+            <%--<td class="tableleft">密码</td>--%>
+            <%--<td><input type="password" name="password" value="<%=password%>"/></td>--%>
+        <%--</tr>--%>
         <tr>
             <td class="tableleft">邮箱</td>
             <td><input type="text" name="email" value="<%=email%>"/></td>

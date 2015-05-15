@@ -79,7 +79,7 @@ To change this template use File | Settings | File Templates.
                             map = (HashMap)ob;
                             String pid =map.get("pid").toString();
                             sql = "select count(*) from comments where pid = '"+pid+"'";
-                            String cnum = sqlop.executeQuerySingle(sql,null).toString();
+                            String cnum = sqlop.executeQuerySingle(sql, null).toString();
                             String uid=map.get("uid").toString();
                             String title = map.get("title").toString();
                             String content = map.get("content").toString();

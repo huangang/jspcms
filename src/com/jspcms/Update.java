@@ -37,10 +37,10 @@ public class Update extends HttpServlet {
         }else if(table.equals("user")) {
             String uid = req.getParameter("uid");
             String username = req.getParameter("username");
-            String password = req.getParameter("password");
+            //String password = req.getParameter("password");
             String email = req.getParameter("email");
             String role = req.getParameter("role");
-            String sql = "update users set username='" + username + "',password='" + password + "' ,email='" + email + "' ,role='" + role + "' where uid='" + uid + "'";
+            String sql = "update users set username='" + username + "' ,email='" + email + "' ,role='" + role + "' where uid='" + uid + "'";
             int efn = sqlop.executeUpdate(sql, null);
             if (efn >= 1) {
                 out.println("<script>alert('修改成功');window.location.href='Manager/User/index.jsp';</script>");
@@ -66,6 +66,35 @@ public class Update extends HttpServlet {
                 out.print(sql);
             }
 
+        }else if(table.equals("manageChangePassword")){
+            String uid = req.getParameter("uid");
+            MD5 getMD5 = new MD5();
+            String nowPassword = req.getParameter("nowPassword");
+            nowPassword = getMD5.GetMD5Code( nowPassword );
+            String sql = "update users set password='" + nowPassword + "' where uid='" + uid + "'";
+            int efn = sqlop.executeUpdate(sql, null);
+            if (efn >= 1) {
+                out.println("<script>alert('修改成功');window.location.href='Manager/User/index.jsp';</script>");
+            } else {
+                out.print(sql);
+                out.println("<script>alert('修改失败');window.location.href='Manager/User/index.jsp';</script>");
+            }
+
+        }else if(table.equals("changePassword")){
+            String uid = req.getParameter("uid");
+            MD5 getMD5 = new MD5();
+            String password = req.getParameter("password");
+            password = getMD5.GetMD5Code( password );
+            String nowPassword = req.getParameter("nowPassword");
+            nowPassword = getMD5.GetMD5Code( nowPassword );
+            String sql = "update users set password='" + nowPassword + "' where uid='" + uid + "' and password='"+password+"'";
+            int efn = sqlop.executeUpdate(sql, null);
+            if (efn >= 1) {
+                out.println("<script>alert('修改成功');</script>");
+            } else {
+                out.print(sql);
+                out.println("<script>alert('修改失败');</script>");
+            }
         }
 
 
