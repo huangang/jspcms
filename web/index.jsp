@@ -69,11 +69,24 @@ To change this template use File | Settings | File Templates.
                     <%--</article>--%>
 
                     <%
+                        //一页放10个
+                        int PAGESIZE = 10;
+                        int pageCount;
+                        int curPage = 1;
                         SqlOperate sqlop = new SqlOperate();
                         String sql = "select *from posts order by pid desc";
                         List list = sqlop.excuteQuery(sql, null);
                         int postNum = list.size();
-                        for(int i=0;i<postNum;i++) {
+                        pageCount = (postNum%PAGESIZE==0)?(postNum/PAGESIZE):(postNum/PAGESIZE+1);
+                        String tmp = request.getParameter("curPage");
+                        if(tmp==null){
+                            tmp="1";
+                        }
+                        curPage = Integer.parseInt(tmp);
+                        if(curPage>=pageCount) curPage = pageCount;
+
+
+                        for(int i=((curPage-1) * PAGESIZE);i<curPage * PAGESIZE;i++) {
                             Object ob = list.get(i);
                             Map<String, Object> map = new HashMap<String, Object>();
                             map = (HashMap)ob;
@@ -100,9 +113,28 @@ To change this template use File | Settings | File Templates.
                         }
                     %>
                 </div>
+                <a href = "index.jsp?curPage=1" >首页</a>
+                <%
+                    if(curPage==1){
+                %>
+                <%
+                    }else{
+                %>
+                <a href = "index.jsp?curPage=<%=curPage-1%>" >上一页</a>
+                <%
+                    }
+                    if(curPage == pageCount){
+
+                    }else{
+                %>
+                <a href = "index.jsp?curPage=<%=curPage+1%>" >下一页</a>
+                <%
+                    }
+                %>
+                <a href = "index.jsp?curPage=<%=pageCount%>" >尾页</a>
+                第<%=curPage%>页/共<%=pageCount%>页
             </section>
             <jsp:include page="sidebar.jsp" flush="true"/>
-
 
         </div>
     </div>
