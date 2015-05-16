@@ -84,8 +84,10 @@
       <div class="input-group-addon"><img src="captcha.jsp" onclick="javascript:this.src = 'captcha.jsp?time=' + Math.random();"></div>
       <input type="text" class="form-control" placeholder="验证码" required name="code">
     </div>
-
     <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+    <br>
+    <a href="register.jsp">注册</a>
+    <a href="index.jsp">返回首页</a>
   </form>
 
 </div>
