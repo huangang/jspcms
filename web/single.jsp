@@ -78,19 +78,43 @@ To change this template use File | Settings | File Templates.
                                                     String uerid = maps.get("uid").toString();
                                                     sql = "select username from users where uid='"+uerid+"'";
                                                     username=sqlop.executeQuerySingle(sql, null).toString();
-                                                    String reply_cid = "0";
-                                                    if(maps.get("reply_cid") != null){
-                                                        reply_cid = maps.get("reply_cid").toString();
-                                                    }
+                                                    String reply_cid = maps.get("reply_cid").toString();
                                                     String ccontent = maps.get("content").toString();
                                                     String comment_time = maps.get("comment_time").toString();
                                                     out.print("<li class=\"clearfix comments_li\" ><div><img src=\"images/avatar.png\" alt=\"avatar\" class=\"avatar\" /></div><div class=\"textarea last\">");
-                                                    out.print("<p class=\"meta\">"+comment_time.substring(0, comment_time.length() - 2)+" "+username+" says:</p>");
+                                                    if(!reply_cid.equals("0")){
+                                                        sql = "select uid from comments where cid='"+reply_cid+"'";
+                                                        String ruid = sqlop.executeQuerySingle(sql, null).toString();
+                                                        sql = "select comment_time from comments where cid='"+reply_cid+"'";
+                                                        String rcomment_time = sqlop.executeQuerySingle(sql, null).toString();
+                                                        sql = "select username from users where uid='"+ruid+"'";
+                                                        String rusername=sqlop.executeQuerySingle(sql, null).toString();
+
+                                                        out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> reply: <a>"+rcomment_time.substring(0, rcomment_time.length() - 2)+" "+rusername+"</a></p>");
+
+                                                    }else {
+                                                        out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> says:</p>");
+                                                    }
                                                     out.print("<p>"+ccontent+"</p>");
+                                                    out.print("<a href=\"javascript:void(0);\" onclick=\"reply("+cid+")\">回复</a>");
                                                     out.print("</div></li>");
                                             }
                                             %>
-
+                                             <script>
+                                                 function reply(id){
+                                                     $("#reply_id").val(id);
+                                                     var reply_name = $("#cid"+id).text();
+                                                     $("#reply_name").val("回复"+reply_name);
+                                                     $("#reply_name").css("display","block");
+                                                     $("#clear_btn").css("display","block");
+                                                 }
+                                                 function clear_reply(){
+                                                     $("#reply_id").val("");
+                                                     $("#reply_name").val("");
+                                                     $("#reply_name").css("display","none");
+                                                     $("#clear_btn").css("display","none");
+                                                 }
+                                             </script>
 
                                         </ul>
                                     </div>
@@ -107,6 +131,9 @@ To change this template use File | Settings | File Templates.
                                         <div class="af-outer af-required">
                                             <div class="af-inner">
                                                 <label for="input-message" id="message_label">Your Message:</label>
+                                                <input type="hidden" value="0" name="reply_id" id="reply_id"/>
+                                                <input type="text" value="" name="reply_name" style="display: none;" id="reply_name" readOnly="true" />
+                                                <input type="button" id="clear_btn" value="Clear" onclick="clear_reply()" style="display: none;" class="form-button btn" />
                                                 <textarea name="message" id="input-message" cols="30" class="text-input"></textarea>
                                                 <label class="error" for="input-message" id="message_error">Message is required.</label>
                                             </div>

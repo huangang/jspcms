@@ -15,6 +15,6 @@
 
 <% exception.printStackTrace(response.getWriter()); %>
 
-<h1><a href="index.jsp">返回首页</a></h1>
+<h1><a href="/index.jsp">返回首页</a></h1>
 </body>
 </html>

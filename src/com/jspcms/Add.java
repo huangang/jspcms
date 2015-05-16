@@ -46,7 +46,8 @@ public class Add extends HttpServlet{
             String uid = session.getAttribute("uid").toString();
             String pid = req.getParameter("pid");
             String content = req.getParameter("message");
-            addComment(uid, pid, content, resp);
+            String reply_id = req.getParameter("reply_id");
+            addComment(uid, pid, reply_id,content, resp);
         }
 
     }
@@ -104,10 +105,10 @@ public class Add extends HttpServlet{
         }
     }
 
-    private void addComment(String uid, String pid, String content, HttpServletResponse resp) throws ServletException, IOException{
+    private void addComment(String uid, String pid, String reply_id, String content, HttpServletResponse resp) throws ServletException, IOException{
         resp.setContentType("text/html;charset=utf8");
         PrintWriter out = resp.getWriter();
-        String sql = "insert into comments(pid,uid,content) values('"+pid+"','"+uid+"','"+content+"')";
+        String sql = "insert into comments(pid,uid,reply_cid,content) values('"+pid+"','"+uid+"','"+reply_id+"','"+content+"')";
 
         if(sqlop.executeUpdate(sql,null) != 0){
             out.println("<script>alert('添加成功');window.location.href='single.jsp?pid="+pid+"';</script>");
