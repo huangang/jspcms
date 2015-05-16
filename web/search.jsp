@@ -5,7 +5,7 @@
   Time: 上午8:56
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="error.jsp" %>
 <%@page import="com.jspcms.SqlOperate" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>

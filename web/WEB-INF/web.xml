@@ -75,6 +75,11 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/DoSearch</url-pattern>
     </servlet-mapping>
-
-
+    <!--
+    错误页面设置
+    -->
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
 </web-app>
