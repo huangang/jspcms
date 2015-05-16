@@ -69,11 +69,17 @@
 
     </tr>
     <tr>
+        <script type="text/javascript" charset="utf-8" src="../../ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../../ueditor/ueditor.all.min.js"> </script>
+        <script type="text/javascript" charset="utf-8" src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
         <td class="tableleft">正文</td>
         <td>
-            <textarea name="content" rows="10" cols="20">
-
-            </textarea>
+            <%--<textarea name="content" rows="10" cols="20">--%>
+            <%--</textarea>--%>
+            <script id="editor" type="text/plain" style="width:1024px;height:500px;" name="content" ></script>
+                <script type="text/javascript">
+                    var ue = UE.getEditor('editor');
+                </script>
         </td>
     </tr>
     <tr>
