@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page import="com.jspcms.SqlOperate" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <% request.setCharacterEncoding("utf-8");  %>
 <!-- sidebar -->
 <aside id="sidebar" class="alignright span4">
@@ -180,24 +184,28 @@
   </div>
   <section class="post-widget block-grey">
     <ul class="clearfix block-light wrap15">
-      <li>
-        <a href="#"><img src="example/sidebar1.jpg" alt="photo" /></a>
-        <a href="#">Ut in lacus rhoncus elit egesta sluctus. Nullam at</a>
-        <p><em>12 Apr 2012, 3 comments</em></p>
-        <div class="clear"></div>
-      </li>
-      <li>
-        <a href="#"><img src="example/sidebar2.jpg" alt="photo" /></a>
-        <a href="#">Ut in lacus rhoncus elit egesta sluctus. Nullam at</a>
-        <p><em>12 Apr 2012, 3 comments</em></p>
-        <div class="clear"></div>
-      </li>
-      <li>
-        <a href="#"><img src="example/sidebar3.jpg" alt="photo" /></a>
-        <a href="#">Ut in lacus rhoncus elit egesta sluctus. Nullam at</a>
-        <p><em>12 Apr 2012, 3 comments</em></p>
-        <div class="clear"></div>
-      </li>
+      <%
+          SqlOperate sqlop = new SqlOperate();
+          String sql = "select *from posts order by pid desc limit 0,5";
+          List list = sqlop.excuteQuery(sql, null);
+          int postNum = list.size();
+          for(int i=0;i<postNum;i++) {
+              Object ob = list.get(i);
+              Map<String, Object> map = new HashMap<String, Object>();
+              map = (HashMap)ob;
+              String pid =map.get("pid").toString();
+              sql = "select count(*) from comments where pid = '"+pid+"'";
+              String cnum = sqlop.executeQuerySingle(sql, null).toString();
+              String title = map.get("title").toString();
+              String post_time = map.get("post_time").toString();
+              out.print("<li>");
+              out.print("<a href=\"single.jsp?pid="+pid+"\">"+title+"at</a>");
+              out.print("<p><em>"+post_time.substring(0, post_time.length() - 2)+", "+cnum+" comments</em></p><div class=\"clear\"></div>");
+              out.print("</li>");
+
+          }
+
+      %>
     </ul>
   </section>
 </aside>

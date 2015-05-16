@@ -6,12 +6,13 @@ Time: 下午3:16
 To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  errorPage="error.jsp" %>
-<%@page import="com.jspcms.SqlOperate" %>
+<%@ page import="com.jspcms.SqlOperate" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
 <jsp:include page="header.jsp" flush="true" />
 <title>首页</title>
+<script src="js/Cutter.js"></script>
 <!-- container -->
 <section id="container">
     <div class="container">
@@ -26,48 +27,6 @@ To change this template use File | Settings | File Templates.
                             <div class="divider-arrow"></div>
                         </div>
                     </div>
-                    <%--<article class="blog-post span8">--%>
-                        <%--<div class="block-grey">--%>
-                            <%--<div class="block-light">--%>
-                                <%--<div class="wrapper-img">--%>
-                                    <%--<a href="#"><img src="example/blog1.jpg" alt="photo" /></a>--%>
-                                <%--</div>--%>
-                                <%--<div class="wrapper">--%>
-                                    <%--<h2 class="post-title"><a href="#">Lorem ipsum</a></h2>--%>
-                                    <%--<a href="#" class="blog-comments">3</a>--%>
-                                    <%--<p>--%>
-                                        <%--Lorem ipsum dolor sit amet, consectetuer adipiscing elit,--%>
-                                        <%--sed diam nonummy nibh euismod tdolore mag quam erat volutpat.--%>
-                                        <%--<a href="#" class="read-more">[...]</a>--%>
-                                    <%--</p>--%>
-                                    <%--<p class="tags">--%>
-                                        <%--Tags: <a href="#">Science</a>, <a href="#">Technology</a>, <a href="#">News</a>--%>
-                                    <%--</p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</article>--%>
-                    <%--<article class="blog-post span8">--%>
-                        <%--<div class="block-grey">--%>
-                            <%--<div class="block-light">--%>
-                                <%--<div class="wrapper">--%>
-                                    <%--<h2 class="post-title"><a href="#">Lorem ipsum</a></h2>--%>
-                                    <%--<a href="#" class="blog-comments">3</a>--%>
-                                    <%--<blockquote>--%>
-                                        <%--<p>--%>
-                                            <%--Lorem ipsum dolor sit amet, consectetur adipiscing elit.--%>
-                                            <%--Morbi posuere metus ut sem pellentesque nec ullamcorper leo sollicitudin.--%>
-                                            <%--Sed adipiscing placerat eros id tincidunt. Donec eu luctus tortor.--%>
-                                        <%--</p>--%>
-                                    <%--</blockquote>--%>
-                                    <%--<p class="tags">--%>
-                                        <%--Tags: <a href="#">Science</a>, <a href="#">Technology</a>, <a href="#">News</a>--%>
-                                    <%--</p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</article>--%>
-
                     <%
                         //一页放10个
                         int PAGESIZE = 10;
@@ -115,17 +74,19 @@ To change this template use File | Settings | File Templates.
                             String sid=map.get("sid").toString();
                             sql = "select sname from sorts where sid='"+sid+"'";
                             String sname=sqlop.executeQuerySingle(sql, null).toString();
-                            out.print("<article class=\"blog-post span8\"><div class=\"block-grey\"><div class=\"block-light\"><div class=\"wrapper\">");
-                            out.print("<h2 class=\"post-title\"><a href=\"single.jsp?pid="+pid+"\">");
-                            out.print(title+"</a></h2>");
-                            out.print("<a href=\"#\" class=\"blog-comments\">"+cnum+"</a>");
-                            out.print("<blockquote><p>"+content+"</p></blockquote>");
-                            out.print("<p class=\"tags\">Sort: <a href=\"#\">"+sname+"</a></p>");
-                            out.print("</div></div></div></article>");
+                            out.println("<article class=\"blog-post span8\"><div class=\"block-grey\"><div class=\"block-light\"><div class=\"wrapper\">");
+                            out.println("<h2 class=\"post-title\"><a href=\"single.jsp?pid=" + pid + "\">");
+                            out.println(title + "</a></h2>");
+                            out.println("<a href=\"#\" class=\"blog-comments\">" + cnum + "</a>");
+                            out.println("<blockquote><div id=\"pid" + pid + "\">" + content + "</div></blockquote>");
+                            out.println("<script>var oElement"+pid+" = document.getElementById(\"pid" + pid + "\");Cutter.run(oElement"+pid+", oElement"+pid+", 20,{more:\"<a href=single.jsp?pid="+pid+">View more</a>\"}, {more:\"more\"});</script>");
+                            out.println("<p class=\"tags\">Sort: <a href=\"sort.jsp?sid=" + sid + "\">" + sname + "</a></p>");
+                            out.println("</div></div></div></article>");
 
                         }
                     %>
                 </div>
+
                 <a href = "index.jsp?curPage=1" >首页</a>
                 <%
                     if(curPage==1){

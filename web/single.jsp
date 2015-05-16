@@ -51,11 +51,8 @@ To change this template use File | Settings | File Templates.
                     <article class="blog-post span8">
                         <div class="block-grey">
                             <div class="block-light">
-                                <div class="wrapper-img">
-                                    <a href="#"><img src="example/blog2.jpg" alt="photo" /></a>
-                                </div>
                                 <div class="wrapper">
-                                    <h2 class="post-title"><a href="#"><%=sname%></a></h2>
+                                    <h2 class="post-title"><a href="sort.jsp?sid=<%=sid%>"><%=sname%></a></h2>
                                     <%
                                         sql = "select *from comments where pid='"+pid+"' order by cid desc";
                                         List lists = sqlop.excuteQuery(sql, null);
