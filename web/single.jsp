@@ -84,13 +84,18 @@ To change this template use File | Settings | File Templates.
                                                     out.print("<li class=\"clearfix comments_li\" ><div><img src=\"images/avatar.png\" alt=\"avatar\" class=\"avatar\" /></div><div class=\"textarea last\">");
                                                     if(!reply_cid.equals("0")){
                                                         sql = "select uid from comments where cid='"+reply_cid+"'";
-                                                        String ruid = sqlop.executeQuerySingle(sql, null).toString();
-                                                        sql = "select comment_time from comments where cid='"+reply_cid+"'";
-                                                        String rcomment_time = sqlop.executeQuerySingle(sql, null).toString();
-                                                        sql = "select username from users where uid='"+ruid+"'";
-                                                        String rusername=sqlop.executeQuerySingle(sql, null).toString();
+                                                        Object r_uid = sqlop.executeQuerySingle(sql, null);
+                                                        if(r_uid != null) {
+                                                            String ruid = r_uid.toString();
+                                                            sql = "select comment_time from comments where cid='" + reply_cid + "'";
+                                                            String rcomment_time = sqlop.executeQuerySingle(sql, null).toString();
+                                                            sql = "select username from users where uid='" + ruid + "'";
+                                                            String rusername = sqlop.executeQuerySingle(sql, null).toString();
 
-                                                        out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> reply: <a>"+rcomment_time.substring(0, rcomment_time.length() - 2)+" "+rusername+"</a></p>");
+                                                            out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> reply: <a>" + rcomment_time.substring(0, rcomment_time.length() - 2) + " " + rusername + "</a></p>");
+                                                        }else{
+                                                            out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> says:</p>");
+                                                        }
 
                                                     }else {
                                                         out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> says:</p>");
