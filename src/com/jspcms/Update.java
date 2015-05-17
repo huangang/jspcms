@@ -89,12 +89,52 @@ public class Update extends HttpServlet {
             nowPassword = getMD5.GetMD5Code( nowPassword );
             String sql = "update users set password='" + nowPassword + "' where uid='" + uid + "' and password='"+password+"'";
             int efn = sqlop.executeUpdate(sql, null);
+            String role = session.getAttribute("role").toString();
             if (efn >= 1) {
-                out.println("<script>alert('修改成功');</script>");
+                if(role.equals("manager")) {
+                    out.println("<script>alert('修改成功');window.location.href='Manager/UserCenter/index.jsp';</script>");
+                }else if(role.equals("author")){
+                    out.println("<script>alert('修改成功');window.location.href='Author/UserCenter/index.jsp';</script>");
+                }else if(role.equals("subscriber")){
+                    out.println("<script>alert('修改成功');window.location.href='Subscriber/UserCenter/index.jsp';</script>");
+                }
             } else {
                 out.print(sql);
-                out.println("<script>alert('修改失败');</script>");
+                if(role.equals("manager")) {
+                    out.println("<script>alert('修改失败');window.location.href='Manager/UserCenter/index.jsp';</script>");
+                }else if(role.equals("author")){
+                    out.println("<script>alert('修改失败');window.location.href='Author/UserCenter/index.jsp';</script>");
+                }else if(role.equals("subscriber")){
+                    out.println("<script>alert('修改失败');window.location.href='Subscriber/UserCenter/index.jsp';</script>");
+                }
             }
+        }else if(table.equals("usercenter")){
+            String role = session.getAttribute("role").toString();
+            String uid = session.getAttribute("uid").toString();
+            String username = req.getParameter("username");
+            String email = req.getParameter("email");
+            String sql = "update users set username='" + username + "' ,email ='"+email+"' where uid='" + uid + "'";
+            int efn = sqlop.executeUpdate(sql, null);
+            if (efn >= 1) {
+                if(role.equals("manager")) {
+                    out.println("<script>alert('修改成功');window.location.href='Manager/UserCenter/index.jsp';</script>");
+                }else if(role.equals("author")){
+                    out.println("<script>alert('修改成功');window.location.href='Author/UserCenter/index.jsp';</script>");
+                }else if(role.equals("subscriber")){
+                    out.println("<script>alert('修改成功');window.location.href='Subscriber/UserCenter/index.jsp';</script>");
+                }
+            } else {
+                out.print(sql);
+                if(role.equals("manager")) {
+                    out.println("<script>alert('修改失败');window.location.href='Manager/UserCenter/index.jsp';</script>");
+                }else if(role.equals("author")){
+                    out.println("<script>alert('修改失败');window.location.href='Author/UserCenter/index.jsp';</script>");
+                }else if(role.equals("subscriber")){
+                    out.println("<script>alert('修改失败');window.location.href='Subscriber/UserCenter/index.jsp';</script>");
+                }
+            }
+
+
         }
 
 

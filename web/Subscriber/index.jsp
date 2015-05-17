@@ -52,6 +52,7 @@ if(session.getAttribute("uid")==null){
             }
             ]
             },
+            {id:'2',homePage : '21',menu:[{text:'个人中心',items:[{id:'21',text:'个人设置',href:'UserCenter/index.jsp'},{id:'22',text:'修改密码',href:'UserCenter/ChangePassword.jsp'}]}]}
         ];
         new PageUtil.MainPage({
             modulesConfig : config

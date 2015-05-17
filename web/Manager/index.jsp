@@ -31,6 +31,7 @@
         <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
         <ul id="J_Nav"  class="nav-list ks-clear">
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">个人中心</div></li>
 
         </ul>
     </div>
@@ -49,11 +50,9 @@
                 {id:'11',text:'文章管理',href:'Post/index.jsp'},
                 {id:'12',text:'用户管理',href:'User/index.jsp'},
                 {id:'13',text:'分类管理',href:'Sort/index.jsp'},
-                {id:'14',text:'评论管理',href:'Comment/index.jsp'}
-            ]
-            }
-            ]
-            },
+                {id:'14',text:'评论管理',href:'Comment/index.jsp'}]}]},
+            {id:'2',homePage : '21',menu:[{text:'个人中心',items:[{id:'21',text:'个人设置',href:'UserCenter/index.jsp'},{id:'22',text:'修改密码',href:'UserCenter/ChangePassword.jsp'}]}]}
+
         ];
         new PageUtil.MainPage({
             modulesConfig : config
