@@ -32,7 +32,6 @@
         <ul id="J_Nav"  class="nav-list ks-clear">
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">个人中心</div></li>
-
         </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
