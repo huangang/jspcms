@@ -56,31 +56,33 @@
   String email=map.get("email").toString();
   String role=map.get("role").toString();
   String register_time=map.get("register_time").toString();
+  String avatar=map.get("avatar").toString();
+  String path = request.getContextPath();
+  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<form class="form-inline definewidth m20" action="/DoUpdate" method="post">
+<form class="form-inline definewidth m20" action="/DoUpdate" method="post" >
 <table class="table table-bordered table-hover definewidth m10" >
   <input type="hidden" name="table" value="usercenter" />
   <tr>
-    <th>用户名</th>
+    <td class="tableleft">用户名</td>
     <td><input type="text" name="username" value="<%=username%>"/></td>
   </tr>
   <tr>
-    <th>邮箱</th>
+    <td class="tableleft">邮箱</td>
     <td><input type="text" name="email" value="<%=email%>"/></td>
   </tr>
   <tr>
-    <th>身份</th>
+    <td class="tableleft">身份</td>
     <td><input type="text" name="role" value="<%=role%>" disabled="true" /></td>
   </tr>
   <tr>
-    <th>注册时间</th>
+    <td class="tableleft">注册时间</td>
     <td><input type="text" name="register_time" value="<%=register_time.substring(0,register_time.length()-2)%>" disabled="true"/></td>
   </tr>
   <tr>
-    <th>头像</th>
+    <td class="tableleft">头像</td>
     <td>
-      <img src="../../upload/avatar/avatar.png"><br>
-      <input type="file" name="avatar" value="" accept="image/*" />
+      <img src="<%=basePath+avatar%>" width="70" height="70"><br>
     </td>
   </tr>
   <tr>

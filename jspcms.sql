@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`email` varchar(255) NOT NULL COMMENT '邮箱',
 	`role` varchar(11) NOT NULL COMMENT '身份',
 	`register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
+	`avator` varchar(255) NOT NULL DEFAULT 'upload/avatar/avatar.png' COMMENT '头像路径',
 	PRIMARY KEY (`uid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2 ;
 

@@ -76,6 +76,15 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/DoSearch</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateAvatarServlet</servlet-name>
+        <servlet-class>com.jspcms.UpdateAvatar</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAvatarServlet</servlet-name>
+        <url-pattern>/DoUpdateAvatar</url-pattern>
+    </servlet-mapping>
     <!--
     错误页面设置
     -->

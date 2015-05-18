@@ -78,10 +78,12 @@ To change this template use File | Settings | File Templates.
                                                     String uerid = maps.get("uid").toString();
                                                     sql = "select username from users where uid='"+uerid+"'";
                                                     username=sqlop.executeQuerySingle(sql, null).toString();
+                                                    sql = "select avatar from users where uid='"+uerid+"'";
+                                                    String avatar=sqlop.executeQuerySingle(sql, null).toString();
                                                     String reply_cid = maps.get("reply_cid").toString();
                                                     String ccontent = maps.get("content").toString();
                                                     String comment_time = maps.get("comment_time").toString();
-                                                    out.print("<li class=\"clearfix comments_li\" ><div><img src=\"images/avatar.png\" alt=\"avatar\" class=\"avatar\" /></div><div class=\"textarea last\">");
+                                                    out.print("<li class=\"clearfix comments_li\" ><div><img width=\"70\" height=\"70\" src=\""+avatar+"\" alt=\"avatar\" class=\"avatar\" /></div><div class=\"textarea last\">");
                                                     if(!reply_cid.equals("0")){
                                                         sql = "select uid from comments where cid='"+reply_cid+"'";
                                                         Object r_uid = sqlop.executeQuerySingle(sql, null);
