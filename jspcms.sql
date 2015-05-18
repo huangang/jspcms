@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`email` varchar(255) NOT NULL COMMENT '邮箱',
 	`role` varchar(11) NOT NULL COMMENT '身份',
 	`register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
-	`avator` varchar(255) NOT NULL DEFAULT 'upload/avatar/avatar.png' COMMENT '头像路径',
+	`avatar` varchar(255) NOT NULL DEFAULT 'upload/avatar/avatar.png' COMMENT '头像路径',
 	PRIMARY KEY (`uid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2 ;
 
@@ -81,5 +81,5 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- 转存表中的数据 `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `password`, `email`, `role`, `register_time`) VALUES
-	(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@qq.com', 'manager', '2015-05-07 07:22:06');
+INSERT INTO `users` (`uid`, `username`, `password`, `email`, `role`, `register_time`, `avatar`) VALUES
+	(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@qq.com', 'manager', '2015-05-07 07:22:06','upload/avatar/avatar.png');

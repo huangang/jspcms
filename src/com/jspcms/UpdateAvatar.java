@@ -55,7 +55,7 @@ public class UpdateAvatar extends HttpServlet {
 //                    continue;//非file域不处理
 //                }
                 String sourcefileName = file.getName();
-                if( sourcefileName.endsWith(".jpg")){//生成上传后的文件名
+                if( sourcefileName.endsWith(".jpg") || sourcefileName.endsWith(".JPG")){//生成上传后的文件名
                 //if(true){//生成上传后的文件名
                     Random rd = new Random();
                     Calendar time = Calendar.getInstance();
