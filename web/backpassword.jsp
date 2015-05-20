@@ -71,7 +71,7 @@
   <form class="form-signin" role="form" method="post" action="DoBackPassword">
     <h2 class="form-signin-heading">找回密码</h2>
     <div class="input-group">
-        <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
         <input type="email" class="form-control" placeholder="邮箱" required autofocus name="email">
     </div>
     <div class="input-group">
