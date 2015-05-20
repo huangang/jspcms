@@ -85,6 +85,15 @@
         <servlet-name>UpdateAvatarServlet</servlet-name>
         <url-pattern>/DoUpdateAvatar</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BackPasswordServlet</servlet-name>
+        <servlet-class>com.jspcms.BackPassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BackPasswordServlet</servlet-name>
+        <url-pattern>/DoBackPassword</url-pattern>
+    </servlet-mapping>
     <!--
     错误页面设置
     -->
