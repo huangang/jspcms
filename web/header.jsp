@@ -42,37 +42,51 @@
   <![endif]-->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
+<!-- top menu -->
+<section id="top-menu">
+  <div class="container">
+    <div class="row">
+      <div class="span6 hidden-phone">
+        <ul class="top-menu">
+          <li><a href="/index.jsp">首页</a></li>
+          <%
+            if(session.getAttribute("uid") != null){
+              String role = session.getAttribute("role").toString();
+              if(role.equals("manager")){
+          %>
+          <li><a href="Manager/index.jsp">后台</a></li>
+          <%
+          }else if(role.equals("author")){
+          %>
+          <li><a href="Author/index.jsp">后台</a></li>
+          <%
+          }else if(role.equals("subscriber")){
+          %>
+          <li><a href="Subscriber/index.jsp">后台</a></li>
+          <%
+            }
+          %>
+          <li><a href="DoExit">退出</a></li>
+          <%
+          }else{
+          %>
+          <li><a href="/login.jsp">登录</a></li>
+          <li><a href="/register.jsp">注册</a></li>
+          <%
+            }
+          %>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- header -->
 <header id="header">
   <div class="container">
     <div class="row">
       <div class="span4 logo">
-        <%
-          if(session.getAttribute("uid") != null){
-            String role = session.getAttribute("role").toString();
-            if(role.equals("manager")){
-        %>
-        <a href="Manager/index.jsp">后台</a><br>
-        <%
-        }else if(role.equals("author")){
-        %>
-        <a href="Author/index.jsp">后台</a><br>
-        <%
-        }else if(role.equals("subscriber")){
-        %>
-        <a href="Subscriber/index.jsp">后台</a><br>
-        <%
-          }
-        %>
-        <a href="DoExit">退出</a><br>
-        <%
-        }else{
-        %>
-        <a href="login.jsp">登陆</a><br>
-        <a href="register.jsp">注册</a><br>
-        <%
-          }
-        %>
         <a href="index.jsp"><img src="images/logo.png" alt="logo" /></a>
       </div>
       <div class="span8 hidden-phone">
