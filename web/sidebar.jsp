@@ -208,4 +208,40 @@
       %>
     </ul>
   </section>
+    <!-- Recent Comments -->
+    <div class="title-divider">
+        <h3>Recent Comments</h3>
+        <div class="divider-arrow"></div>
+    </div>
+    <section class="post-widget block-grey">
+        <ul class="clearfix block-light wrap15">
+            <%
+                sql = "select *from comments order by cid desc limit 0,5";
+                list = sqlop.excuteQuery(sql, null);
+                int commentNum = list.size();
+                for(int i=0;i<commentNum;i++) {
+                    Object ob = list.get(i);
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    map = (HashMap)ob;
+                    String pid =map.get("pid").toString();
+                    sql = "select title from posts where pid = '"+pid+"'";
+                    String title = sqlop.executeQuerySingle(sql, null).toString();
+                    String uid =map.get("uid").toString();
+                    sql = "select username from users where uid = '"+uid+"'";
+                    String username = sqlop.executeQuerySingle(sql, null).toString();
+                    sql = "select avatar from users where uid = '"+uid+"'";
+                    String avatar = sqlop.executeQuerySingle(sql, null).toString();
+                    String content = map.get("content").toString();
+                    String comment_time = map.get("comment_time").toString();
+                    out.print("<li>");
+                    out.print("<a href=\"#\" ><img src=\""+avatar+"\" alt=\"photo\" style=\"width:60px;height:60px;\" ></a>");
+                    out.print("<a href=\"single.jsp?pid="+pid+"\">at "+title+"at</a>");
+                    out.print("<p><em>"+username+" say "+content +" on "+comment_time.substring(0, comment_time.length() - 2)+"</em></p><div class=\"clear\"></div>");
+                    out.print("</li>");
+
+                }
+
+            %>
+        </ul>
+    </section>
 </aside>
