@@ -58,7 +58,7 @@ public class Delete extends HttpServlet {
                 String sql = "delete from users where uid=" + uid;
                 out.println(sqlop.executeUpdate(sql, null));
                 sql = "delete from posts where uid='"+uid+"'";
-                sqlop.excuteQuery(sql,null);
+                sqlop.executeUpdate(sql,null);
                 sql = "delete from comments where uid='"+uid+"'";
                 sqlop.executeUpdate(sql,null);
             } finally {
