@@ -12,6 +12,12 @@ To change this template use File | Settings | File Templates.
 <%@ page import="java.util.HashMap" %>
 <%
     String pid=request.getParameter("pid");
+    String user_id;
+    if(session.getAttribute("uid") != null) {
+        user_id = session.getAttribute("uid").toString();
+    }else{
+        user_id = "0";
+    }
     if(pid == null){
         response.sendRedirect("index.jsp");
     }
@@ -75,10 +81,10 @@ To change this template use File | Settings | File Templates.
                                                     Map<String, Object> maps = new HashMap<String, Object>();
                                                     maps = (HashMap)obs;
                                                     String cid = maps.get("cid").toString();
-                                                    String uerid = maps.get("uid").toString();
-                                                    sql = "select username from users where uid='"+uerid+"'";
+                                                    String userid = maps.get("uid").toString();
+                                                    sql = "select username from users where uid='"+userid+"'";
                                                     username=sqlop.executeQuerySingle(sql, null).toString();
-                                                    sql = "select avatar from users where uid='"+uerid+"'";
+                                                    sql = "select avatar from users where uid='"+userid+"'";
                                                     String avatar=sqlop.executeQuerySingle(sql, null).toString();
                                                     String reply_cid = maps.get("reply_cid").toString();
                                                     String ccontent = maps.get("content").toString();
@@ -103,7 +109,54 @@ To change this template use File | Settings | File Templates.
                                                         out.print("<p class=\"meta\"><a id=\"cid" + cid + "\">" + comment_time.substring(0, comment_time.length() - 2) + " " + username + "</a> says:</p>");
                                                     }
                                                     out.print("<p>"+ccontent+"</p>");
-                                                    out.print("<a href=\"javascript:void(0);\" onclick=\"reply("+cid+")\">回复</a>");
+                                                    out.println("<a href=\"javascript:void(0);\" onclick=\"reply(" + cid + ")\">回复</a>");
+                                                    if(userid.equals(user_id)){
+                                                        out.println("<a href=\"#\" onclick='del("+cid+")' >删除</a>");
+                                                        out.println("<script>\n" +
+                                                                "\n" +
+                                                                "    function del(id){\n" +
+                                                                "        var xmlhttp;\n" +
+                                                                "        var status=\"\";\n" +
+                                                                "        try{\n" +
+                                                                "            xmlhttp=new ActiveXObject('Msxml2.XMLHTTP');\n" +
+                                                                "        } catch(e){\n" +
+                                                                "            try{\n" +
+                                                                "                xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');\n" +
+                                                                "            } catch(e){\n" +
+                                                                "                try{\n" +
+                                                                "                    xmlhttp=new XMLHttpRequest();\n" +
+                                                                "                }catch(e){}\n" +
+                                                                "            }\n" +
+                                                                "        }\n" +
+                                                                "\n" +
+                                                                "\n" +
+                                                                "        if(confirm(\"确定要删除吗？\"))\n" +
+                                                                "        {\n" +
+                                                                "\n" +
+                                                                "            xmlhttp.open(\"GET\",\"/DoDelete?table=comment&cid=\"+id,true);\n" +
+                                                                "            xmlhttp.onreadystatechange=function(){\n" +
+                                                                "                if (xmlhttp.readyState==4)\n" +
+                                                                "                //xmlhttp.status==404 代表 没有发现该文件\n" +
+                                                                "                    if (xmlhttp.status==200)\n" +
+                                                                "                    {\n" +
+                                                                "                        //alert(xmlhttp.status);\n" +
+                                                                "                        status=xmlhttp.responseText;\n" +
+                                                                "                        console.log(status);\n" +
+                                                                "                    } else\n" +
+                                                                "                    {\n" +
+                                                                "                        alert(\"发生错误：\"+xmlhttp.status);\n" +
+                                                                "                    }\n" +
+                                                                "\n" +
+                                                                "            }\n" +
+                                                                "            xmlhttp.send(null);\n" +
+                                                                "            window.location.href=\"single.jsp?pid="+pid+"\";\n" +
+                                                                "\n" +
+                                                                "        }\n" +
+                                                                "\n" +
+                                                                "    }\n" +
+                                                                "\n" +
+                                                                "</script>");
+                                                    }
                                                     out.print("</div></li>");
                                             }
                                             %>
