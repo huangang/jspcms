@@ -41,5 +41,6 @@
     <orderEntry type="library" name="mail" level="project" />
     <orderEntry type="library" name="imap" level="project" />
     <orderEntry type="library" name="smtp" level="project" />
+    <orderEntry type="library" name="ueditor-mini" level="project" />
   </component>
 </module>
