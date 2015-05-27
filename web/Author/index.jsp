@@ -13,6 +13,7 @@
 <head>
     <title>作者</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/png" />
     <link href="../CommonBackstage/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
     <link href="../CommonBackstage/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
     <link href="../CommonBackstage/assets/css/main-min.css" rel="stylesheet" type="text/css" />

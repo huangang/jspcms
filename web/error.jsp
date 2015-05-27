@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>error</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
 </head>
 <body>
 <H1>网页发生错误：</H1><%=exception%>

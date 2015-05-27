@@ -13,6 +13,7 @@
 %>
 <html>
 <head>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

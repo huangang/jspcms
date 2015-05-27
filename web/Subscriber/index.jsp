@@ -12,6 +12,7 @@ if(session.getAttribute("uid")==null){
 <html>
 <head>
     <title>订阅者</title>
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/png" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="../CommonBackstage/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
     <link href="../CommonBackstage/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
