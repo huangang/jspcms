@@ -29,4 +29,4 @@
 9.设置个人中心页面       
 ##还需功能
    
-##[演示站点](http://jspcms.jd-app.com/)
+<!-- ##[演示站点](http://jspcms.jd-app.com/) -->
