@@ -43,5 +43,6 @@
     <orderEntry type="library" exported="" name="smtp" level="project" />
     <orderEntry type="library" exported="" name="ueditor-mini" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

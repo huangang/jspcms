@@ -30,4 +30,5 @@
        
 ##说明
 运行前,需要配置好mysql      
-把`src/com/jspcms/SqlOperate.java`的mysql配置修改成自己的mysql配置     
+把`src/com/jspcms/SqlOperate.java`的mysql配置修改成自己的mysql配置   
+ 
