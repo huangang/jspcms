@@ -1,3 +1,4 @@
 out/
 jspcms_war exploded.war
 /.idea/
+.DS_Store
