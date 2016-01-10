@@ -1,4 +1,5 @@
 #jspcms(jsp内容管理系统)
+[演示站点](http://tx.pupued.com:8080/) 
 ##已有功能
 ###前台
 1.首页浏览    
@@ -30,5 +31,6 @@
        
 ##说明
 运行前,需要配置好mysql      
-把`src/com/jspcms/SqlOperate.java`的mysql配置修改成自己的mysql配置   
+把`src/com/jspcms/SqlOperate.java`的mysql配置修改成自己的mysql配置     
+第一次导入mysql后,默认管理员账号admin@qq.com,密码123456    
  
