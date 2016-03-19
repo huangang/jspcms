@@ -26,17 +26,17 @@ public class SqlOperate {
     /**
      * 连接字符串
      */
-    private static final String URLSTR = "jdbc:mysql://localhost:3306/jspcms?useUnicode=true&characterEncoding=utf-8";
+    private static final String URLSTR = "jdbc:mysql://rdsof157q3ddbqsyhcuv.mysql.rds.aliyuncs.com:3306/jspcms?useUnicode=true&characterEncoding=utf-8";
 
     /**
      * 用户名
      */
-    private static final String USERNAME = "root";
+    private static final String USERNAME = "jspcms";
 
     /**
      * 密码
      */
-    private static final String USERPASSWORD = "bombvote";
+    private static final String USERPASSWORD = "2012810505";
 
     /**
      * 创建数据库连接对象
