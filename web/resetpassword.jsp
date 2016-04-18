@@ -1,7 +1,7 @@
 <%@ page import="com.jspcms.SqlOperate" %>
 <%--
   Created by IntelliJ IDEA.
-  User: huangang
+  User: joya
   Date: 15/5/20
   Time: 上午10:07
   To change this template use File | Settings | File Templates.

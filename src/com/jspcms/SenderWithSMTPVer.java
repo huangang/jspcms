@@ -1,7 +1,7 @@
 package com.jspcms;
 
 /**
- * Created by huangang on 15/5/20.
+ * Created by joya on 15/5/20.
  */
 import javax.mail.Message;
 import javax.mail.Session;

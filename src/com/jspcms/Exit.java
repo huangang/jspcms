@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by huangang on 15/5/7.
+ * Created by joya on 15/5/7.
  */
 public class Exit extends HttpServlet {
     @Override

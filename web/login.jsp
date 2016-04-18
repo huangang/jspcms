@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  com.jspcms.User: huangang
+  com.jspcms.User: joya
   Date: 15/5/5
   Time: 下午3:19
   To change this template use File | Settings | File Templates.

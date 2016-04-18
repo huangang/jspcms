@@ -1,7 +1,7 @@
 package com.jspcms;
 
 /**
- * Created by huangang on 15/5/5.
+ * Created by joya on 15/5/5.
  */
 public class Sort {
     private int sid;

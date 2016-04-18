@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by huangang on 15/5/18.
+ * Created by joya on 15/5/18.
  */
 public class UpdateAvatar extends HttpServlet {
 

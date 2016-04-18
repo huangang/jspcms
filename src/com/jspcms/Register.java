@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by huangang on 15/5/5.
+ * Created by joya on 15/5/5.
  */
 public class Register extends HttpServlet{
 

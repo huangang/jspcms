@@ -1,7 +1,7 @@
 package com.jspcms;
 
 /**
- * Created by huangang on 15/5/11.
+ * Created by joya on 15/5/11.
  */
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

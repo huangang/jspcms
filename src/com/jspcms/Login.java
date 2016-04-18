@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by huangang on 15/5/5.
+ * Created by joya on 15/5/5.
  */
 public class Login extends HttpServlet{
     User user = new User();

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by huangang on 15/5/20.
+ * Created by joya on 15/5/20.
  */
 public class BackPassword  extends HttpServlet{
     @Override
@@ -37,7 +37,7 @@ public class BackPassword  extends HttpServlet{
 
                     SenderWithSMTPVer sm=new   SenderWithSMTPVer();
                     sm.setHost("smtp.mxhichina.com");
-                    sm.setAccount("jspcms@pupued.com", "2012810505HuanGang");   //发送邮件的用户名、密码
+                    sm.setAccount("jspcms@pupued.com", "2012810505joya");   //发送邮件的用户名、密码
                     MD5 getMD5 = new MD5();
                     String uidSession = getMD5.GetMD5Code(uid);
                     session.setAttribute("uidSession", uidSession);
